@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jerry's Remote Job Dashboard — 2026-04-09</title>
+<style>
+/* ─── Design Tokens ──────────────────────────────────────────── */
+:root {
+  --c-bg:          #f0f2f5;
+  --c-surface:     #ffffff;
+  --c-surface-2:   #f8f9fa;
+  --c-border:      #e4e7ec;
+  --c-text:        #101828;
+  --c-text-2:      #475467;
+  --c-text-3:      #98a2b3;
+
+  --c-primary:     #6366f1;
+  --c-primary-lt:  #eef2ff;
+  --c-primary-dk:  #4f46e5;
+
+  --c-danger:      #d92d20;
+  --c-danger-lt:   #fef3f2;
+  --c-danger-md:   #fda29b;
+
+  --c-warn:        #b54708;
+  --c-warn-lt:     #fffaeb;
+  --c-warn-md:     #fec84b;
+
+  --c-success:     #027a48;
+  --c-success-lt:  #ecfdf3;
+  --c-success-md:  #6ce9a6;
+
+  --c-blue:        #1d4ed8;
+  --c-blue-lt:     #eff6ff;
+
+  --c-purple:      #6d28d9;
+  --c-purple-lt:   #f5f3ff;
+
+  --c-pink:        #be185d;
+  --c-pink-lt:     #fdf2f8;
+
+  --c-teal:        #0d7490;
+  --c-teal-lt:     #ecfeff;
+
+  --c-orange:      #c4320a;
+  --c-orange-lt:   #fff4ed;
+
+  --shadow-sm:  0 1px 2px rgba(16,24,40,.05);
+  --shadow-md:  0 4px 8px -2px rgba(16,24,40,.10), 0 2px 4px -2px rgba(16,24,40,.06);
+  --shadow-lg:  0 12px 16px -4px rgba(16,24,40,.08), 0 4px 6px -2px rgba(16,24,40,.03);
+  --shadow-xl:  0 20px 24px -4px rgba(16,24,40,.08), 0 8px 8px -4px rgba(16,24,40,.03);
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-pill:9999px;
+
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* ─── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--c-bg);
+  color: var(--c-text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { font-family: var(--font); cursor: pointer; border: none; background: none; }
+
+/* ─── Header ─────────────────────────────────────────────────── */
+.header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 60%, #f093fb 100%);
+  padding: 40px 32px 60px;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.header-inner { position: relative; max-width: 1200px; margin: 0 auto; }
+.header h1 { font-size: 28px; font-weight: 800; color: #fff; letter-spacing: -0.5px; margin-bottom: 6px; }
+.header p  { color: rgba(255,255,255,.8); font-size: 15px; }
+.header-badges { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.header-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.18); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff; padding: 5px 12px; border-radius: var(--radius-pill);
+  font-size: 12px; font-weight: 500;
+}
+.header-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #6ee7b7; }
+
+/* ─── Stats Bar ──────────────────────────────────────────────── */
+.stats-bar {
+  max-width: 1200px; margin: -24px auto 0;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 0; border-radius: var(--radius-lg);
+  background: var(--c-surface); box-shadow: var(--shadow-xl);
+  overflow: hidden; position: relative; z-index: 10;
+}
+.stat-item {
+  padding: 20px 24px; text-align: center; position: relative;
+  transition: background .15s;
+}
+.stat-item:not(:last-child)::after {
+  content: ''; position: absolute; right: 0; top: 20%; height: 60%;
+  width: 1px; background: var(--c-border);
+}
+.stat-item:hover { background: var(--c-surface-2); }
+.stat-num { font-size: 32px; font-weight: 800; color: var(--c-primary); letter-spacing: -1px; line-height: 1; }
+.stat-num.danger { color: var(--c-danger); }
+.stat-num.warn   { color: var(--c-warn); }
+.stat-label { font-size: 11px; font-weight: 600; color: var(--c-text-3); text-transform: uppercase; letter-spacing: .6px; margin-top: 4px; }
+
+/* ─── Main Container ─────────────────────────────────────────── */
+.container { max-width: 1200px; margin: 0 auto; padding: 40px 24px 60px; }
+
+/* ─── Alert Boxes ────────────────────────────────────────────── */
+.alert-box {
+  border-radius: var(--radius-lg); padding: 20px 24px;
+  margin-bottom: 20px; display: flex; gap: 16px; align-items: flex-start;
+}
+.alert-box.urgent { background: var(--c-danger-lt); border: 1px solid #fda29b; }
+.alert-box.info   { background: var(--c-blue-lt);   border: 1px solid #bfdbfe; }
+.alert-box.success { background: var(--c-success-lt); border: 1px solid var(--c-success-md); }
+.alert-icon { font-size: 22px; flex-shrink: 0; margin-top: 1px; }
+.alert-body h3 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.alert-box.urgent .alert-body h3 { color: var(--c-danger); }
+.alert-box.info   .alert-body h3 { color: var(--c-blue); }
+.alert-box.success .alert-body h3 { color: var(--c-success); }
+.alert-body ul { padding-left: 16px; }
+.alert-body li { font-size: 13.5px; margin-bottom: 7px; line-height: 1.55; color: var(--c-text-2); }
+.alert-body li strong { color: var(--c-text); }
+.alert-body a { color: var(--c-primary); font-weight: 600; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* ─── HR Advice Panel ────────────────────────────────────────── */
+.advice-panel {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+}
+.advice-panel h3 {
+  font-size: 16px; font-weight: 700; color: #92400e;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 14px;
+}
+.advice-panel ul { padding-left: 18px; }
+.advice-panel li { font-size: 13.5px; color: #78350f; margin-bottom: 8px; line-height: 1.55; }
+.advice-panel li strong { color: #451a03; }
+.advice-panel a { color: #b45309; font-weight: 600; }
+
+/* ─── Timeline ───────────────────────────────────────────────── */
+.timeline-panel {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  box-shadow: var(--shadow-sm);
+}
+.timeline-panel h3 { font-size: 16px; font-weight: 700; margin-bottom: 18px; color: var(--c-text); }
+.timeline-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding-bottom: 16px; margin-bottom: 16px;
+  border-bottom: 1px dashed var(--c-border);
+}
+.timeline-item:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.timeline-dot {
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--c-primary); margin-top: 5px; flex-shrink: 0;
+  box-shadow: 0 0 0 3px var(--c-primary-lt);
+}
+.timeline-dot.urgent { background: var(--c-danger); box-shadow: 0 0 0 3px var(--c-danger-lt); }
+.timeline-date { font-size: 12px; font-weight: 700; color: var(--c-text-2); min-width: 80px; padding-top: 2px; }
+.timeline-desc { font-size: 13px; color: var(--c-text-2); }
+.timeline-desc strong { color: var(--c-text); }
+
+/* ─── Filter Bar ─────────────────────────────────────────────── */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg); padding: 14px 18px;
+  margin-bottom: 28px; box-shadow: var(--shadow-sm);
+  position: sticky; top: 12px; z-index: 20;
+}
+.filter-btn {
+  padding: 6px 14px; border-radius: var(--radius-pill);
+  border: 1.5px solid var(--c-border); background: var(--c-surface);
+  color: var(--c-text-2); font-size: 13px; font-weight: 500;
+  transition: all .15s; white-space: nowrap;
+}
+.filter-btn:hover { border-color: var(--c-primary); color: var(--c-primary); background: var(--c-primary-lt); }
+.filter-btn.active { background: var(--c-primary); color: #fff; border-color: var(--c-primary); box-shadow: 0 1px 4px rgba(99,102,241,.35); }
+
+/* ─── Section Header ─────────────────────────────────────────── */
+.section { margin-bottom: 44px; }
+.section-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 18px; padding-bottom: 12px;
+  border-bottom: 2px solid var(--c-border);
+}
+.section-head h2 { font-size: 18px; font-weight: 700; color: var(--c-text); }
+.section-badge {
+  background: var(--c-primary); color: #fff;
+  border-radius: var(--radius-pill); padding: 2px 10px;
+  font-size: 12px; font-weight: 700;
+}
+.section-badge.danger  { background: var(--c-danger); }
+.section-badge.warn    { background: #d97706; }
+.section-badge.success { background: var(--c-success); }
+.section-badge.neutral { background: var(--c-text-2); }
+
+/* ─── Card Grid ──────────────────────────────────────────────── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 18px;
+}
+
+/* ─── Opportunity Card ───────────────────────────────────────── */
+.opp-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex; flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  transition: transform .18s, box-shadow .18s;
+}
+.opp-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+/* Left accent border by priority */
+.opp-card.critical { border-left: 4px solid var(--c-danger); }
+.opp-card.high     { border-left: 4px solid #d97706; }
+.opp-card.medium   { border-left: 4px solid var(--c-success); }
+.opp-card.low      { border-left: 4px solid var(--c-text-3); }
+
+.card-top {
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid var(--c-border);
+  background: var(--c-surface-2);
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
+}
+.priority-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 10px; border-radius: var(--radius-pill);
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px;
+}
+.priority-pill.critical { background: var(--c-danger-lt);  color: var(--c-danger); }
+.priority-pill.high     { background: var(--c-warn-lt);    color: var(--c-warn); }
+.priority-pill.medium   { background: var(--c-success-lt); color: var(--c-success); }
+.priority-pill.low      { background: var(--c-surface-2);  color: var(--c-text-3); }
+.priority-pill::before  { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+.platform-pill {
+  display: inline-block; padding: 3px 10px; border-radius: var(--radius-pill);
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  font-size: 11px; color: var(--c-text-3); font-weight: 500; white-space: nowrap;
+}
+
+/* Deadline banner */
+.deadline-banner {
+  padding: 6px 18px; font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; gap: 6px;
+  letter-spacing: .2px;
+}
+.deadline-banner.fire { background: #fef2f2; color: #b91c1c; border-bottom: 1px solid #fecaca; }
+.deadline-banner.warn { background: #fffbeb; color: #92400e; border-bottom: 1px solid #fde68a; }
+.deadline-banner.ok   { background: var(--c-success-lt); color: #065f46; border-bottom: 1px solid var(--c-success-md); }
+
+.card-body { padding: 16px 18px; flex: 1; display: flex; flex-direction: column; gap: 10px; }
+
+.card-company { font-size: 16px; font-weight: 800; color: var(--c-text); line-height: 1.3; }
+.card-role    { font-size: 13px; font-weight: 600; color: var(--c-primary); margin-top: -4px; }
+
+.card-meta {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.meta-chip {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 12px; color: var(--c-text-2);
+  background: var(--c-surface-2); border: 1px solid var(--c-border);
+  padding: 3px 9px; border-radius: var(--radius-pill);
+}
+.meta-chip svg { flex-shrink: 0; }
+
+/* Category tags */
+.tag-row { display: flex; flex-wrap: wrap; gap: 5px; }
+.cat-tag {
+  display: inline-block; padding: 3px 10px; border-radius: var(--radius-pill);
+  font-size: 11px; font-weight: 600;
+}
+.cat-tag.communication { background: #eff6ff; color: #1d4ed8; }
+.cat-tag.cultural      { background: #fdf2f8; color: var(--c-pink); }
+.cat-tag.marketing     { background: #ecfdf3; color: #065f46; }
+.cat-tag.pr            { background: #fffaeb; color: #92400e; }
+.cat-tag.translation   { background: var(--c-purple-lt); color: var(--c-purple); }
+.cat-tag.teaching      { background: var(--c-pink-lt); color: var(--c-pink); }
+.cat-tag.government    { background: #f8fafc; color: #334155; border: 1px solid #e2e8f0; }
+.cat-tag.events        { background: #fff7ed; color: var(--c-orange); }
+.cat-tag.arts          { background: #fdf2f8; color: #9d174d; }
+
+/* Info rows */
+.info-row { font-size: 13px; color: var(--c-text-2); line-height: 1.55; }
+.info-row strong { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--c-text-3); margin-bottom: 3px; }
+
+.sell-box {
+  background: var(--c-primary-lt); border-radius: var(--radius-md);
+  padding: 10px 12px;
+}
+.sell-box .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--c-primary); margin-bottom: 4px; }
+.sell-box p { font-size: 13px; color: #3730a3; line-height: 1.5; }
+
+/* Strength / Weakness chips */
+.chips-row { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip {
+  font-size: 11px; font-weight: 500; padding: 3px 9px;
+  border-radius: var(--radius-pill);
+}
+.chip.strength { background: var(--c-success-lt); color: #065f46; border: 1px solid var(--c-success-md); }
+.chip.weakness { background: var(--c-danger-lt);  color: #991b1b; border: 1px solid var(--c-danger-md); }
+
+/* Prep tips */
+.prep-list { font-size: 12.5px; color: var(--c-text-2); padding-left: 16px; }
+.prep-list li { margin-bottom: 4px; }
+.prep-list a { color: var(--c-primary); }
+
+/* Card actions */
+.card-actions {
+  padding: 12px 18px; border-top: 1px solid var(--c-border);
+  display: flex; gap: 8px; flex-wrap: wrap;
+  background: var(--c-surface-2);
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: var(--radius-md);
+  font-size: 13px; font-weight: 600; transition: all .15s;
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--c-primary); color: #fff;
+  box-shadow: 0 1px 3px rgba(99,102,241,.3);
+}
+.btn-primary:hover { background: var(--c-primary-dk); box-shadow: 0 2px 8px rgba(99,102,241,.4); }
+.btn-primary.danger { background: var(--c-danger); box-shadow: 0 1px 3px rgba(217,45,32,.3); }
+.btn-primary.danger:hover { background: #b42318; }
+.btn-ghost {
+  background: var(--c-surface); color: var(--c-text-2);
+  border: 1.5px solid var(--c-border);
+}
+.btn-ghost:hover { border-color: var(--c-primary); color: var(--c-primary); background: var(--c-primary-lt); }
+
+/* ─── Footer ─────────────────────────────────────────────────── */
+.footer {
+  text-align: center; padding: 32px 0;
+  font-size: 12px; color: var(--c-text-3);
+  border-top: 1px solid var(--c-border);
+  max-width: 1200px; margin: 0 auto;
+}
+.footer a { color: var(--c-primary); }
+
+/* ─── Empty State ────────────────────────────────────────────── */
+.empty { text-align: center; padding: 40px 20px; color: var(--c-text-3); font-size: 14px; }
+
+/* ─── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .stats-bar { grid-template-columns: repeat(3, 1fr); border-radius: var(--radius-md); }
+  .stats-bar .stat-item:nth-child(3)::after { display: none; }
+}
+@media (max-width: 640px) {
+  .header { padding: 28px 18px 52px; }
+  .header h1 { font-size: 22px; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); margin: -18px 16px 0; }
+  .container { padding: 28px 16px 48px; }
+  .card-grid { grid-template-columns: 1fr; }
+  .filter-bar { position: static; }
+  .stats-bar .stat-item:nth-child(2)::after { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-inner">
+    <h1>Jerry's Remote Job Dashboard</h1>
+    <p>100% Remote &nbsp;·&nbsp; AI / Data / Engineering / Marketing / Consulting &nbsp;·&nbsp; Global + Taiwan</p>
+    <div class="header-badges">
+      <span class="header-badge"><span class="dot"></span> Updated 2026-04-09</span>
+      <span class="header-badge">Next scan 2026-04-16</span>
+      <span class="header-badge">40+ platforms scanned</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STATS ════════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">18</div>
+    <div class="stat-label">Total Found</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num danger">5</div>
+    <div class="stat-label">Critical</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num warn">10</div>
+    <div class="stat-label">High Priority</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Medium</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">40+</div>
+    <div class="stat-label">Platforms</div>
+  </div>
+</div>
+
+<!-- ══ MAIN ═════════════════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- HR Advice -->
+  <div class="advice-panel">
+    <h3>💼 HR Consultant Advice This Week</h3>
+    <ul><li><strong>This week:</strong> Set up profiles on <a href="https://weworkremotely.com">We Work Remotely</a>, <a href="https://remoteok.com">RemoteOK</a>, <a href="https://wellfound.com">Wellfound</a>, and <a href="https://arc.dev">Arc.dev</a> — these are the top remote-first boards for your profile.</li>
+<li><strong>LinkedIn optimization:</strong> Turn on "Open to Work" with remote filter. Update headline to: "AI-Powered Data & Operations Consultant | Building AI Agent Systems | Open to Remote"</li>
+<li><strong>Taiwan platforms:</strong> Update your <a href="https://www.cake.me">CakeResume</a> and <a href="https://www.104.com.tw">104</a> profiles with English + Chinese resume. Set remote filter alerts on both.</li>
+<li><strong>AI-specific:</strong> Check <a href="https://aijobs.net">AI Jobs</a> and Hacker News "Who is Hiring" threads monthly — these are where the best AI/ML remote gigs surface first.</li>
+<li><strong>Your edge:</strong> Your Kun-Jia Autos project (23K lines, 80% auto-reply, LINE+Claude integration) is your strongest portfolio piece. Lead every application with this.</li>
+<li><strong>Consulting angle:</strong> Your Anatek semiconductor project ($560K savings in 2 weeks) positions you perfectly for fractional CTO/consultant roles. Consider listing on <a href="https://www.toptal.com">Toptal</a> and <a href="https://catalant.com">Catalant</a>.</li>
+<li><strong>Salary benchmark (remote from Taiwan):</strong> AI/ML Engineer $80-150K USD; Data Engineer $70-120K; Full-Stack $60-110K; Consulting $100-200/hr. Your APAC timezone is a plus for companies with global teams.</li></ul>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-panel">
+    <h3>⏱ Priority Action Timeline</h3>
+    
+  <div class="timeline-item">
+    <div class="timeline-dot "></div>
+    <div class="timeline-date">Week 1</div>
+    <div class="timeline-desc"><strong>Profile blitz:</strong> Set up on WWR, RemoteOK, Wellfound, Arc.dev, Toptal, CakeResume, 104</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot urgent"></div>
+    <div class="timeline-date">Week 1</div>
+    <div class="timeline-desc"><strong>Apply:</strong> Send 10 applications to critical-priority listings</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot "></div>
+    <div class="timeline-date">Week 2</div>
+    <div class="timeline-desc"><strong>Networking:</strong> Join Reddit r/remotework, r/forhire, FB remote job groups. Post availability.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot "></div>
+    <div class="timeline-date">Week 2</div>
+    <div class="timeline-desc"><strong>Portfolio:</strong> Publish Kun-Jia Autos case study on LinkedIn + personal site</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot "></div>
+    <div class="timeline-date">Week 3</div>
+    <div class="timeline-desc"><strong>Follow up:</strong> Check application statuses. Apply to 10 more listings from scan update.</div>
+  </div>
+  <div class="timeline-item">
+    <div class="timeline-dot "></div>
+    <div class="timeline-date">Week 4</div>
+    <div class="timeline-desc"><strong>Review:</strong> Analyze which verticals get callbacks. Double down on those. Adjust keywords.</div>
+  </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCards('all', this)">All (18)</button>
+    <button class="filter-btn" onclick="filterCards('communication', this)">Communication</button>
+    <button class="filter-btn" onclick="filterCards('cultural', this)">Cultural</button>
+    <button class="filter-btn" onclick="filterCards('marketing', this)">Marketing</button>
+    <button class="filter-btn" onclick="filterCards('pr', this)">PR</button>
+    <button class="filter-btn" onclick="filterCards('translation', this)">Translation</button>
+    <button class="filter-btn" onclick="filterCards('events', this)">Events</button>
+    <button class="filter-btn" onclick="filterCards('arts', this)">Arts & Creative</button>
+    <button class="filter-btn" onclick="filterCards('government', this)">Government</button>
+    <button class="filter-btn" onclick="filterCards('teaching', this)">Teaching</button>
+  </div>
+
+  <!-- CRITICAL -->
+  <div class="section" id="sec-critical">
+    <div class="section-head">
+      <h2>🔴 Critical Priority — Apply Now</h2>
+      <span class="section-badge danger">5</span>
+    </div>
+    <div class="card-grid">
+    <div class="opp-card critical" data-category="ai_automation engineering">
+      <div class="card-top">
+        <span class="priority-pill critical">critical</span>
+        <span class="platform-pill">We Work Remotely</span>
+      </div>
+      <div class="deadline-banner ok">✓ Multiple listings — apply now</div>
+      <div class="card-body">
+        <div class="card-company">Various — We Work Remotely (AI)</div>
+        <div class="card-role">Applied AI Engineer / AI Agent Developer</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Worldwide</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $80K–$150K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build AI agent systems and RAG pipelines</li><li>Python + LangChain/Hugging Face/OpenAI APIs</li><li>Ship production ML features</li><li>Collaborate async with distributed teams</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your Kun-Jia Autos project (23K lines, Claude API + LINE webhook, 80% auto-reply) IS exactly what these companies want. You've shipped AI agents in production — not just prototyped them. Lead with this.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent experience</span><span class="chip strength">Claude API / LLM integration</span><span class="chip strength">Full-stack (React+Node+Python)</span><span class="chip strength">23K-line shipped project</span><span class="chip weakness">No PyTorch/TensorFlow deep learning experience listed</span><span class="chip weakness">May need to demonstrate ML fundamentals beyond prompt engineering</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Polish Kun-Jia Autos as a GitHub portfolio piece with README + architecture diagram</li><li>Prepare a 3-minute demo video of the AI auto-reply system</li><li>Brush up on LangChain, RAG patterns, and vector databases</li><li>Apply to 5+ listings on WWR this week</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs-artificial-intelligence-ai" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card critical" data-category="ai_automation engineering">
+      <div class="card-top">
+        <span class="priority-pill critical">critical</span>
+        <span class="platform-pill">We Work Remotely</span>
+      </div>
+      <div class="deadline-banner ok">✓ Active listing — apply now</div>
+      <div class="card-body">
+        <div class="card-company">Growth Factory Ventures</div>
+        <div class="card-role">Applied AI Engineer</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $80K–$120K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Design and build AI-powered products</li><li>RAG pipelines and workflow orchestration</li><li>4+ years in search/ML fields</li><li>Strong Python + Information Retrieval</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your Claude API integration at Kun-Jia (vehicle detection engine, rule-based interceptor, LLM guardrails) directly maps to their 'build AI products' requirement. Your full-stack ability means you can ship end-to-end, not just model code.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Claude API production experience</span><span class="chip strength">AI product building</span><span class="chip strength">Python + TypeScript full-stack</span><span class="chip weakness">May want PhD or formal ML background</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Tailor CV to emphasize AI agent architecture at Kun-Jia</li><li>Prepare to discuss LLM guardrails and safety measures you built</li><li>Have your GitHub repos clean and documented</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/growth-factory-ventures-applied-ai-engineer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card critical" data-category="ai_automation leadership engineering">
+      <div class="card-top">
+        <span class="priority-pill critical">critical</span>
+        <span class="platform-pill">We Work Remotely</span>
+      </div>
+      <div class="deadline-banner ok">✓ Active — apply now</div>
+      <div class="card-body">
+        <div class="card-company">Shado Ventures</div>
+        <div class="card-role">Senior ML Engineer — AI Document Intelligence</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote</span>
+          <span class="meta-chip">⏱ 4-week paid sprint → potential Founding CTO</span>
+          <span class="meta-chip">💰 $15K sprint / $180K–$220K if CTO</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag leadership">leadership</span><span class="cat-tag engineering">engineering</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build AI document intelligence systems</li><li>ML pipeline architecture</li><li>Potential founding CTO trajectory</li><li>Ship fast in paid sprint format</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your Anatek sprint (3 months compressed to 2 weeks, $560K savings) proves you deliver under time pressure. Your Kun-Jia project proves you can build from zero to production solo. CTO potential = you've already done this at startup scale.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Sprint delivery proven (Anatek)</span><span class="chip strength">Solo full-stack AI builder</span><span class="chip strength">CTO-ready experience</span><span class="chip weakness">Document intelligence is a specific ML domain — brush up on OCR/NER</span><span class="chip weakness">May want deep ML research background</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Research document intelligence: OCR, NER, layout analysis</li><li>Prepare your Anatek case study as proof of sprint delivery</li><li>Emphasize your 23K-line solo build at Kun-Jia</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/shado-ventures-senior-ml-engineer-ai-document-intelligence-remote-15k-contract" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card critical" data-category="leadership ai_automation consulting">
+      <div class="card-top">
+        <span class="priority-pill critical">critical</span>
+        <span class="platform-pill">Workable</span>
+      </div>
+      <div class="deadline-banner ok">✓ Active — apply now</div>
+      <div class="card-body">
+        <div class="card-company">Human Intelligence</div>
+        <div class="card-role">Fractional CTO / AI Strategy Council</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Global (incl. Southeast Asia)</span>
+          <span class="meta-chip">⏱ Contract (6-12 months)</span>
+          <span class="meta-chip">💰 $132K–$409K USD (hourly invoicing)</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag leadership">leadership</span><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag consulting">consulting</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Provide AI product strategy to portfolio companies</li><li>Design reviews and architecture guidance</li><li>Threat models and eval audits</li><li>Concise, high-leverage advisory</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your dual track — AI system builder (Kun-Jia) + strategic consultant (Anatek) — is the exact CTO/advisor hybrid they want. You've done AI architecture AND business strategy. Few candidates have both.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">AI architecture + business strategy</span><span class="chip strength">Cross-border experience (US/Taiwan/Singapore)</span><span class="chip strength">Production AI systems shipped</span><span class="chip weakness">Advisory role — may want bigger-name company experience</span><span class="chip weakness">Competing with Silicon Valley CTOs</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Update LinkedIn headline to include 'Fractional CTO'</li><li>Prepare 2-page case study deck: Kun-Jia + Anatek</li><li>Register on GoFractional and Fractional Jobs too</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://apply.workable.com/humanintelligence/j/308F8AFF4D/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card critical" data-category="leadership consulting">
+      <div class="card-top">
+        <span class="priority-pill critical">critical</span>
+        <span class="platform-pill">GoFractional + FractionalJobs.io</span>
+      </div>
+      <div class="deadline-banner ok">✓ Ongoing — register now</div>
+      <div class="card-body">
+        <div class="card-company">Various — GoFractional / Fractional Jobs</div>
+        <div class="card-role">Fractional CTO / Fractional CMO</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Global</span>
+          <span class="meta-chip">⏱ Contract (fractional)</span>
+          <span class="meta-chip">💰 $150–$300/hr</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag leadership">leadership</span><span class="cat-tag consulting">consulting</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Strategic technology leadership</li><li>AI product architecture guidance</li><li>Team mentoring and hiring</li><li>Quarterly planning and roadmapping</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You're one of the few people who can do BOTH fractional CTO and fractional CMO. Tech side: 23K-line AI system, full-stack, Docker/CI/CD. Marketing side: SEO, PPC, GA4, 400+ leads/month, ROAS 25x. This dual capability commands premium rates.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">CTO + CMO hybrid rare</span><span class="chip strength">Solo founder experience</span><span class="chip strength">Cross-border ops (US/Taiwan/Singapore)</span><span class="chip weakness">Fractional market favors name-brand company alumni</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Register on GoFractional, FractionalJobs.io, and Toptal</li><li>Create a 2-page 'Fractional Engagements' deck with Kun-Jia + Anatek case studies</li><li>Set hourly rate at $150-200/hr to start</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.fractionaljobs.io" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div></div>
+  </div>
+
+  <!-- HIGH -->
+  <div class="section" id="sec-high">
+    <div class="section-head">
+      <h2>🟡 High Priority</h2>
+      <span class="section-badge warn">10</span>
+    </div>
+    <div class="card-grid">
+    <div class="opp-card high" data-category="engineering">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Wellfound</span>
+      </div>
+      <div class="deadline-banner ok">✓ Multiple listings — ongoing</div>
+      <div class="card-body">
+        <div class="card-company">Various — Wellfound Startups</div>
+        <div class="card-role">Full-Stack Developer (React/TypeScript/Node)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Worldwide</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $51K–$80K USD (Remote, Everywhere)</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag engineering">engineering</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build and maintain web applications</li><li>React/TypeScript frontend + Node.js backend</li><li>API design and database management</li><li>Async collaboration with remote team</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your Kun-Jia stack IS the startup stack: React + TypeScript + tRPC + Express + MySQL + Docker. 23K lines shipped, 81 deployments, 1,694 tests. You're not just a developer — you're a solo-founder-level builder.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Exact stack match</span><span class="chip strength">Solo full-stack shipping ability</span><span class="chip strength">Production deployment experience</span><span class="chip weakness">$51-80K is below your AI/consulting rate — consider this a backup vertical</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Create Wellfound profile emphasizing full-stack AI projects</li><li>Apply to startups building AI-powered products (best intersection of your skills)</li><li>Highlight your test coverage (1,694 tests) — startups love this</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://wellfound.com/role/r/full-stack-web-developer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="data_science engineering">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">RemoteOK</span>
+      </div>
+      <div class="deadline-banner ok">✓ 20+ listings — ongoing</div>
+      <div class="card-body">
+        <div class="card-company">Various — RemoteOK</div>
+        <div class="card-role">Data Engineer / Analytics Engineer</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Worldwide</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $80K–$160K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag data_science">data_science</span><span class="cat-tag engineering">engineering</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Design and maintain ETL pipelines</li><li>Data warehouse architecture</li><li>SQL + Python + cloud infrastructure</li><li>Cross-timezone data operations</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You ran ETL workflows across Singapore, Korea, and Hong Kong at 3Peaks. You know Oracle Cloud Infrastructure. Your cross-timezone data ops experience is rare — most candidates only know single-market pipelines.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Multi-market ETL experience</span><span class="chip strength">SQL/Python/OCI</span><span class="chip strength">APAC timezone operations</span><span class="chip weakness">3Peaks role was more training-heavy — frame it as 'hands-on data engineering'</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Browse https://remoteok.com/remote-analytics+engineer-jobs</li><li>Emphasize your 3Peaks multi-market ETL experience</li><li>Prepare to discuss data quality frameworks you built</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://remoteok.com/remote-analytics+engineer-jobs" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation data_science">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Arc.dev</span>
+      </div>
+      <div class="deadline-banner ok">✓ Multiple listings — ongoing</div>
+      <div class="card-body">
+        <div class="card-company">Various — Arc.dev</div>
+        <div class="card-role">Remote AI/ML Engineer (Taiwan Timezone)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Taiwan accepted</span>
+          <span class="meta-chip">⏱ Full-time or Contract</span>
+          <span class="meta-chip">💰 $80K–$150K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>AI/ML system development</li><li>Python + ML frameworks</li><li>Remote collaboration</li><li>Pass Arc.dev technical vetting</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Arc.dev matched developers with Spotify, Automattic, etc. Your AI production experience + bilingual EN/ZH is a differentiator for APAC-facing companies.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Based in Taiwan (APAC timezone)</span><span class="chip strength">Bilingual EN/ZH</span><span class="chip strength">AI production experience</span><span class="chip weakness">Technical vetting may test CS fundamentals — review algorithms</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Sign up at https://arc.dev and complete their vetting</li><li>Prepare for technical assessment (algorithms + system design)</li><li>Highlight your bilingual advantage for APAC-facing roles</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://arc.dev/en-tw/remote-jobs" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Multiple (Remotive, Working Nomads, Arc.dev)</span>
+      </div>
+      <div class="deadline-banner ok">✓ Active listings</div>
+      <div class="card-body">
+        <div class="card-company">Various — Prompt Engineer Roles</div>
+        <div class="card-role">Prompt Engineer / AI Evaluation Specialist</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Worldwide</span>
+          <span class="meta-chip">⏱ Full-time or Contract</span>
+          <span class="meta-chip">💰 $60K–$120K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Design and optimize prompts for LLMs</li><li>Evaluate AI model outputs</li><li>Build prompt testing frameworks</li><li>Collaborate with ML teams</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You use AI agents daily as your operating system — not as a buzzword. Your LLM guardrails for legal compliance at Kun-Jia prove you can engineer prompts for production safety, not just chatbot demos.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Daily production prompt engineering</span><span class="chip strength">LLM guardrails experience</span><span class="chip strength">Claude API mastery</span><span class="chip weakness">Title is newer — some companies may want formal NLP background</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Browse https://arc.dev/remote-jobs/prompt-engineering</li><li>Also check https://remotive.com/remote-jobs?query=prompt+engineer</li><li>Prepare examples of prompt engineering you did at Kun-Jia</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://arc.dev/remote-jobs/prompt-engineering" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="data_science ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Glassdoor</span>
+      </div>
+      <div class="deadline-banner ok">✓ 201+ listings — ongoing</div>
+      <div class="card-body">
+        <div class="card-company">Various — Glassdoor Taiwan</div>
+        <div class="card-role">Data Scientist / ML Engineer (Taiwan)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan (remote or hybrid)</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 NT$80K–$150K/month</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag data_science">data_science</span><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build ML models for production</li><li>Data analysis and visualization</li><li>Python + SQL + ML frameworks</li><li>Cross-functional collaboration</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your MBA + data science combo is rare in Taiwan. Most DS candidates are pure engineering — you bring business strategy (Nike, Farmz Asia, Anatek) AND technical execution. That's a 10x hire.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">MBA + Data Science hybrid</span><span class="chip strength">Taiwan local (no visa issues)</span><span class="chip strength">Bilingual EN/ZH</span><span class="chip weakness">Taiwan salaries lower than global remote — consider for networking, not primary target</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Browse https://www.glassdoor.com/Job/taiwan-data-scientist-jobs</li><li>Also search on 104 and CakeResume for remote-friendly Taiwan DS roles</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.glassdoor.com/Job/taiwan-data-scientist-jobs-SRCH_IL.0,6_IN240_KO7,21.htm" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation data_science digital_marketing">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">104 Job Bank</span>
+      </div>
+      <div class="deadline-banner ok">✓ Ongoing — check weekly</div>
+      <div class="card-body">
+        <div class="card-company">Various — 104 Job Bank</div>
+        <div class="card-role">Remote AI / Data / Marketing Roles (Taiwan)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan (remote-friendly)</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 NT$60K–$150K/month</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span><span class="cat-tag digital_marketing">digital_marketing</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Varies by role</li><li>May require Chinese communication</li><li>Taiwan business context</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You're a Taiwanese citizen with global experience (Singapore, Netherlands, US projects). Bilingual EN/ZH. Companies get a local hire with international caliber.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Taiwanese citizen</span><span class="chip strength">Bilingual</span><span class="chip strength">Global experience</span><span class="chip weakness">Taiwan remote jobs are rarer and lower-paid than global</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Set up alerts for 遠端+AI, 遠端+數據, 遠端+行銷 on 104</li><li>Use expat portal: https://go.104.com.tw/expats/</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.104.com.tw/jobs/search/?keyword=%E9%81%A0%E7%AB%AF+AI&mode=s" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="engineering ai_automation data_science">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">CakeResume</span>
+      </div>
+      <div class="deadline-banner ok">✓ Ongoing</div>
+      <div class="card-body">
+        <div class="card-company">Various — CakeResume</div>
+        <div class="card-role">Remote AI / Full-Stack / Data Roles (Taiwan)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan (remote filter)</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 Varies</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag engineering">engineering</span><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Varies — startup and tech company roles</li><li>Often require bilingual communication</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>CakeResume companies value international profiles. Your Singapore + Netherlands + Taiwan experience + bilingual skills = standout profile.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">International profile</span><span class="chip strength">Bilingual</span><span class="chip strength">Full-stack + AI</span><span class="chip weakness">Some listings aren't truly remote — verify before applying</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Create polished CakeResume profile at https://www.cake.me</li><li>Upload both EN and ZH resume versions</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.cake.me/jobs?q=remote+AI&location=Taiwan&locale=en" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation data_science">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">AI Jobs (aijobs.net)</span>
+      </div>
+      <div class="deadline-banner ok">✓ Updated daily</div>
+      <div class="card-body">
+        <div class="card-company">Various — AI Jobs Board</div>
+        <div class="card-role">AI Engineer / ML Engineer</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Worldwide</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $80K–$180K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>AI/ML system development</li><li>Model training and deployment</li><li>API development</li><li>Cross-functional collaboration</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your production AI experience (not just Kaggle projects) sets you apart. Emphasize: shipped AI to real users, handles real money, runs 24/7.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI systems</span><span class="chip strength">Full-stack deployment</span><span class="chip weakness">Pure ML research roles may want PhD</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Browse https://aijobs.net/?remote=true weekly</li><li>Apply to roles emphasizing 'applied AI' or 'AI engineering' over 'ML research'</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://aijobs.net/?remote=true" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="consulting ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Toptal + Catalant</span>
+      </div>
+      <div class="deadline-banner ok">✓ Apply + pass vetting</div>
+      <div class="card-body">
+        <div class="card-company">Various — Toptal / Catalant</div>
+        <div class="card-role">AI Consultant / Digital Transformation Consultant</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Global</span>
+          <span class="meta-chip">⏱ Contract / Project-based</span>
+          <span class="meta-chip">💰 $100–$200/hr</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag consulting">consulting</span><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Deliver consulting engagements remotely</li><li>AI strategy and implementation</li><li>Fast turnaround on complex problems</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Anatek: 2-week sprint, $560K savings, full regulatory playbook. That's the kind of story that gets you through Toptal vetting.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Sprint delivery proven</span><span class="chip strength">Cross-domain expertise</span><span class="chip strength">Business + technical</span><span class="chip weakness">Toptal vetting is rigorous — prepare for technical + business interview</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at https://www.toptal.com/careers</li><li>Also register at https://catalant.com</li><li>Prepare Anatek case study for vetting interview</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.toptal.com/careers" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="product_strategy ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Multiple (Built In, Glassdoor, Wellfound)</span>
+      </div>
+      <div class="deadline-banner ok">✓ Active listings — Netflix, Twilio, DocuSign hiring</div>
+      <div class="card-body">
+        <div class="card-company">Various — AI Product Manager Roles</div>
+        <div class="card-role">Technical Product Manager (AI/Data)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $100K–$180K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag product_strategy">product_strategy</span><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Define product vision for AI features</li><li>Manage AI development lifecycle</li><li>Collaborate with data scientists and engineers</li><li>Identify viable AI use cases</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>MBA (National Taipei University) + hands-on AI builder = the unicorn TPM profile. You don't just manage AI products — you've built them. Kun-Jia: you were PM, architect, and engineer all in one.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">MBA + technical builder</span><span class="chip strength">Shipped AI products end-to-end</span><span class="chip strength">Business strategy + engineering</span><span class="chip weakness">No formal PM title on resume — frame Kun-Jia as product ownership</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Frame Kun-Jia as 'I was the product owner, architect, and engineer'</li><li>Browse https://builtin.com/jobs/remote/product/artificial-intelligence</li><li>Prepare product case study: problem → metrics → AI solution → results</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://builtin.com/jobs/remote/product/artificial-intelligence" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div></div>
+  </div>
+
+  <!-- MEDIUM -->
+  <div class="section" id="sec-medium">
+    <div class="section-head">
+      <h2>🟢 Medium Priority</h2>
+      <span class="section-badge success">3</span>
+    </div>
+    <div class="card-grid">
+    <div class="opp-card medium" data-category="digital_marketing">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">Multiple (SEOjobs.com, FlexJobs, Built In)</span>
+      </div>
+      <div class="deadline-banner ok">✓ Active listings</div>
+      <div class="card-body">
+        <div class="card-company">Various — SEO/Growth Roles</div>
+        <div class="card-role">Remote SEO Manager / Growth Marketing Manager</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $55K–$190K USD</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag digital_marketing">digital_marketing</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Lead organic growth strategy</li><li>Technical SEO audits</li><li>PPC campaign management</li><li>Data-driven optimization</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Farmz Asia: 400+ leads/month via PPC. Vive-Viva La Vida: +414% monthly users via SEO. SUM: 20K+ monthly organic visitors with zero budget. You have the numbers.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">5+ years SEO/PPC</span><span class="chip strength">Proven ROI metrics</span><span class="chip strength">Both B2B and B2C experience</span><span class="chip weakness">SEO manager roles pay less than AI/consulting — use as backup</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Browse https://www.seojobs.com/tg/remote/</li><li>Also check https://builtin.com/jobs/remote/marketing/search/seo-manager</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.seojobs.com/tg/remote/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation engineering data_science">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">Hacker News</span>
+      </div>
+      <div class="deadline-banner ok">✓ Monthly (1st of each month)</div>
+      <div class="card-body">
+        <div class="card-company">Various — HN Who is Hiring</div>
+        <div class="card-role">Various (AI/Data/Engineering)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — Worldwide</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 Varies ($80K–$200K+)</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span><span class="cat-tag data_science">data_science</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Varies — generally high-quality engineering roles</li><li>Strong technical bar</li><li>Async remote culture</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>HN companies value builders who ship. Your GitHub portfolio and Kun-Jia project speak the language of this community.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Builder mentality</span><span class="chip strength">Open-source friendly</span><span class="chip weakness">HN crowd skews US/EU — timezone may be discussed</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Bookmark https://hnhiring.com/?q=remote+AI</li><li>Check on 1st of each month for new thread</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://hnhiring.com/?q=remote+AI" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation engineering data_science consulting">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">Reddit</span>
+      </div>
+      <div class="deadline-banner ok">✓ Ongoing</div>
+      <div class="card-body">
+        <div class="card-company">Various — Reddit Communities</div>
+        <div class="card-role">Various (All Verticals)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote</span>
+          <span class="meta-chip">⏱ Varies</span>
+          <span class="meta-chip">💰 Varies</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span><span class="cat-tag data_science">data_science</span><span class="cat-tag consulting">consulting</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Community-sourced opportunities</li><li>Direct connections with hiring managers</li><li>Less formal application process</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Reddit hiring threads value authentic experience. Share your Kun-Jia story in r/forhire — it's the kind of post that goes viral in tech subs.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Authentic story</span><span class="chip strength">Impressive metrics</span><span class="chip weakness">Lower signal-to-noise than dedicated job boards</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Post availability in r/forhire with your best metrics</li><li>Monitor r/remotework, r/datascience, r/machinelearning weekly</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.reddit.com/r/remotework/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div></div>
+  </div>
+
+  <!-- ARTS -->
+  <div class="section" id="sec-arts">
+    <div class="section-head">
+      <h2>🎨 Arts & Creative Industries</h2>
+      <span class="section-badge">0</span>
+    </div>
+    <div class="card-grid"><div class="empty">No arts positions in current scan</div></div>
+  </div>
+
+  <!-- GOVERNMENT -->
+  <div class="section" id="sec-govt">
+    <div class="section-head">
+      <h2>🏛 Government Programs</h2>
+      <span class="section-badge neutral">0</span>
+    </div>
+    <div class="card-grid"><div class="empty">No government positions in current scan</div></div>
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ═══════════════════════════════════════════════════ -->
+<div class="footer">
+  Jerry Lai — AI-Powered Remote Job Hunter &nbsp;|&nbsp; Auto-scans weekly<br>
+  Platforms: LinkedIn · WWR · RemoteOK · Wellfound · Indeed · Glassdoor · 104 · CakeResume · Yourator · AI Jobs · Arc.dev · Remotive · HN Hiring · Reddit
+</div>
+
+<script>
+function filterCards(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.opp-card').forEach(card => {
+    if (cat === 'all') {
+      card.style.display = '';
+    } else {
+      const cats = (card.dataset.category || '').split(' ');
+      card.style.display = cats.includes(cat) ? '' : 'none';
+    }
+  });
+  // Hide empty section headers
+  document.querySelectorAll('.section').forEach(sec => {
+    const visible = [...sec.querySelectorAll('.opp-card')].some(c => c.style.display !== 'none');
+    sec.style.display = visible ? '' : 'none';
+  });
+}
+
+// Animate stat numbers on load
+document.querySelectorAll('.stat-num').forEach(el => {
+  const target = parseInt(el.textContent) || 0;
+  if (!target) return;
+  let count = 0;
+  const inc = Math.max(1, Math.floor(target / 20));
+  const t = setInterval(() => {
+    count = Math.min(count + inc, target);
+    el.textContent = count;
+    if (count >= target) clearInterval(t);
+  }, 40);
+});
+</script>
+</body>
+</html>
