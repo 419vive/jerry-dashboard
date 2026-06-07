@@ -1,0 +1,723 @@
+{
+  "name": "Daily Taiwan Eligible Async Remote Job Hunter",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "30 8 * * *" }]
+        }
+      },
+      "id": "node_001",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "operation": "readRows",
+        "documentId": { "__rl": true, "value": "YOUR_SPREADSHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Raw Jobs", "mode": "name" },
+        "options": {}
+      },
+      "id": "node_002",
+      "name": "Read Existing Job URLs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [0, 200],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "google_sheets_cred", "name": "Google Sheets OAuth2" } }
+    },
+    {
+      "parameters": {
+        "url": "https://remoteok.com/api",
+        "method": "GET",
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "json" } } }
+      },
+      "id": "node_003",
+      "name": "Fetch Remote OK",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-1400, 400],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst raw = items[0].json;\nconst arr = Array.isArray(raw) ? raw : [];\nconst jobs = [];\nfor (const job of arr) {\n  if (!job.position) continue;\n  jobs.push({\n    json: {\n      job_title: job.position || '',\n      company: job.company || '',\n      job_url: job.url || ('https://remoteok.com/remote-jobs/' + (job.id || '')),\n      source: 'Remote OK',\n      location_text: job.location || 'Worldwide',\n      salary: job.salary || '',\n      description: (job.description || '') + ' ' + (Array.isArray(job.tags) ? job.tags.join(' ') : ''),\n      posted_date: job.date || '',\n      tags: Array.isArray(job.tags) ? job.tags.join(',') : '',\n      job_id: 'remoteok_' + (job.id || job.slug || String(Math.random()).slice(2))\n    }\n  });\n}\nreturn jobs;"
+      },
+      "id": "node_004",
+      "name": "Normalize Remote OK",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-1400, 600]
+    },
+    {
+      "parameters": {
+        "url": "https://remotive.com/api/remote-jobs?limit=100",
+        "method": "GET",
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "json" } } }
+      },
+      "id": "node_005",
+      "name": "Fetch Remotive",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-1000, 400],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst data = items[0].json;\nconst jobs = Array.isArray(data.jobs) ? data.jobs : [];\nreturn jobs.map(job => ({\n  json: {\n    job_title: job.title || '',\n    company: job.company_name || '',\n    job_url: job.url || '',\n    source: 'Remotive',\n    location_text: job.candidate_required_location || 'Worldwide',\n    salary: job.salary || '',\n    description: job.description || '',\n    posted_date: job.publication_date || '',\n    tags: Array.isArray(job.tags) ? job.tags.join(',') : (job.category || ''),\n    job_id: 'remotive_' + (job.id || '')\n  }\n}));"
+      },
+      "id": "node_006",
+      "name": "Normalize Remotive",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-1000, 600]
+    },
+    {
+      "parameters": {
+        "url": "https://weworkremotely.com/remote-jobs.rss",
+        "method": "GET",
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "text" } } }
+      },
+      "id": "node_007",
+      "name": "Fetch WWR RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-600, 400],
+      "continueOnFail": true
+    },
+    {
+      "parameters": { "dataPropertyName": "data" },
+      "id": "node_008",
+      "name": "Parse WWR XML",
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [-600, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst rss = items[0].json;\nlet entries = [];\ntry {\n  const channel = rss?.rss?.channel?.[0];\n  entries = channel?.item || [];\n} catch(e) { return []; }\nreturn entries.map(item => {\n  const get = (f) => Array.isArray(item[f]) ? item[f][0] : (item[f] || '');\n  const url = get('link');\n  return {\n    json: {\n      job_title: get('title'),\n      company: get('company') || get('dc:company') || 'Unknown',\n      job_url: url,\n      source: 'We Work Remotely',\n      location_text: get('region') || 'Worldwide',\n      salary: '',\n      description: get('description'),\n      posted_date: get('pubDate'),\n      tags: get('type') || '',\n      job_id: 'wwr_' + (url || '').replace(/[^a-z0-9]/gi,'').slice(-20)\n    }\n  };\n});"
+      },
+      "id": "node_009",
+      "name": "Normalize WWR",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-600, 800]
+    },
+    {
+      "parameters": {
+        "url": "https://himalayas.app/jobs/rss",
+        "method": "GET",
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "text" } } }
+      },
+      "id": "node_010",
+      "name": "Fetch Himalayas RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-200, 400],
+      "continueOnFail": true
+    },
+    {
+      "parameters": { "dataPropertyName": "data" },
+      "id": "node_011",
+      "name": "Parse Himalayas XML",
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [-200, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst rss = items[0].json;\nlet entries = [];\ntry {\n  const channel = rss?.rss?.channel?.[0];\n  entries = channel?.item || [];\n} catch(e) { return []; }\nreturn entries.map(item => {\n  const get = (f) => Array.isArray(item[f]) ? item[f][0] : (item[f] || '');\n  const url = get('link') || get('guid');\n  return {\n    json: {\n      job_title: get('title'),\n      company: get('company') || get('author') || 'Unknown',\n      job_url: url,\n      source: 'Himalayas',\n      location_text: get('location') || 'Worldwide',\n      salary: get('salary') || '',\n      description: get('description') || get('content:encoded') || '',\n      posted_date: get('pubDate'),\n      tags: get('category') || '',\n      job_id: 'himalayas_' + (url || '').replace(/[^a-z0-9]/gi,'').slice(-20)\n    }\n  };\n});"
+      },
+      "id": "node_012",
+      "name": "Normalize Himalayas",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-200, 800]
+    },
+    {
+      "parameters": {
+        "url": "https://www.dynamitejobs.com/remote-jobs.rss",
+        "method": "GET",
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "text" } } }
+      },
+      "id": "node_013",
+      "name": "Fetch Dynamite RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [200, 400],
+      "continueOnFail": true
+    },
+    {
+      "parameters": { "dataPropertyName": "data" },
+      "id": "node_014",
+      "name": "Parse Dynamite XML",
+      "type": "n8n-nodes-base.xml",
+      "typeVersion": 1,
+      "position": [200, 600]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst rss = items[0].json;\nlet entries = [];\ntry {\n  const channel = rss?.rss?.channel?.[0];\n  entries = channel?.item || [];\n} catch(e) { return []; }\nreturn entries.map(item => {\n  const get = (f) => Array.isArray(item[f]) ? item[f][0] : (item[f] || '');\n  const url = get('link') || get('guid');\n  return {\n    json: {\n      job_title: get('title'),\n      company: get('company') || 'Unknown',\n      job_url: url,\n      source: 'Dynamite Jobs',\n      location_text: get('location') || 'Worldwide',\n      salary: get('salary') || '',\n      description: get('description') || '',\n      posted_date: get('pubDate'),\n      tags: get('category') || '',\n      job_id: 'dynamite_' + (url || '').replace(/[^a-z0-9]/gi,'').slice(-20)\n    }\n  };\n});"
+      },
+      "id": "node_015",
+      "name": "Normalize Dynamite",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [200, 800]
+    },
+    {
+      "parameters": {
+        "url": "https://wellfound.com/jobs",
+        "method": "GET",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "User-Agent", "value": "Mozilla/5.0 (compatible; JobBot/1.0)" },
+            { "name": "Accept", "value": "application/json, text/html" }
+          ]
+        },
+        "options": { "timeout": 30000 }
+      },
+      "id": "node_016",
+      "name": "Fetch Wellfound",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [600, 400],
+      "continueOnFail": true,
+      "notes": "Wellfound requires authentication. Configure with your Wellfound session cookie in headers, or use their unofficial GraphQL API at /graphql. See: https://wellfound.com/jobs for manual browsing."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Wellfound requires login — this normalizer handles their GraphQL JSON response.\n// If you have a session cookie, add it as a header in Fetch Wellfound: Cookie: _session=YOUR_VALUE\n// Their GraphQL endpoint: POST https://wellfound.com/graphql\n// For now, returns empty until configured.\nconst items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst data = items[0].json;\n// Try to parse GraphQL response structure\nlet jobs = [];\ntry {\n  const edges = data?.data?.talent?.jobListings?.edges || data?.jobListings?.edges || [];\n  jobs = edges.map(e => e.node || e).filter(j => j.title || j.role);\n} catch(e) { return []; }\nreturn jobs.map(job => ({\n  json: {\n    job_title: job.title || job.role || '',\n    company: job.startup?.name || job.company || 'Unknown',\n    job_url: 'https://wellfound.com/jobs/' + (job.id || job.slug || ''),\n    source: 'Wellfound',\n    location_text: job.locationNames?.join(', ') || job.remote ? 'Remote' : 'Unknown',\n    salary: job.compensation || '',\n    description: job.description || job.jobType || '',\n    posted_date: job.createdAt || '',\n    tags: Array.isArray(job.skills) ? job.skills.map(s => s.name || s).join(',') : '',\n    job_id: 'wellfound_' + (job.id || String(Math.random()).slice(2))\n  }\n}));"
+      },
+      "id": "node_017",
+      "name": "Normalize Wellfound",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [600, 600]
+    },
+    {
+      "parameters": {
+        "url": "https://api.ycombinator.com/companies/jobs?remote=true&page=1",
+        "method": "GET",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/json" },
+            { "name": "User-Agent", "value": "Mozilla/5.0 (compatible; JobBot/1.0)" }
+          ]
+        },
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "json" } } }
+      },
+      "id": "node_018",
+      "name": "Fetch YC WaaS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1000, 400],
+      "continueOnFail": true,
+      "notes": "YC Work at a Startup public endpoint. If this fails, try: https://www.workatastartup.com/jobs?remote=true and parse HTML, or use their RSS if available."
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst data = items[0].json;\nlet jobs = [];\ntry {\n  // YC API response shape: { jobs: [...] } or array\n  jobs = data.jobs || data.job_posts || (Array.isArray(data) ? data : []);\n} catch(e) { return []; }\nreturn jobs.filter(j => j.title || j.role).map(job => ({\n  json: {\n    job_title: job.title || job.role || '',\n    company: job.company_name || job.company?.name || 'Unknown',\n    job_url: job.url || job.job_url || ('https://www.workatastartup.com/jobs/' + (job.id || '')),\n    source: 'YC Work at a Startup',\n    location_text: job.remote ? 'Remote' : (job.location || 'Unknown'),\n    salary: job.salary || job.compensation || '',\n    description: job.description || job.body || '',\n    posted_date: job.created_at || job.posted_at || '',\n    tags: Array.isArray(job.tags) ? job.tags.join(',') : (job.type || ''),\n    job_id: 'yc_' + (job.id || String(Math.random()).slice(2))\n  }\n}));"
+      },
+      "id": "node_019",
+      "name": "Normalize YC",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1000, 600]
+    },
+    {
+      "parameters": {
+        "url": "https://job-api.otta.com/jobs?remote=true&page=1",
+        "method": "GET",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Accept", "value": "application/json" },
+            { "name": "User-Agent", "value": "Mozilla/5.0 (compatible; JobBot/1.0)" }
+          ]
+        },
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "json" } } }
+      },
+      "id": "node_020",
+      "name": "Fetch Otta",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1400, 400],
+      "continueOnFail": true,
+      "notes": "Otta does not have a public API. Consider using their RSS if available, or a scraping service like Apify. This node is a placeholder — configure as needed."
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nif (!items.length || items[0].json.error) return [];\nconst data = items[0].json;\nlet jobs = [];\ntry {\n  jobs = data.jobs || data.results || (Array.isArray(data) ? data : []);\n} catch(e) { return []; }\nreturn jobs.filter(j => j.title).map(job => ({\n  json: {\n    job_title: job.title || '',\n    company: job.company?.name || job.company_name || 'Unknown',\n    job_url: job.url || ('https://app.otta.com/jobs/' + (job.id || job.slug || '')),\n    source: 'Otta',\n    location_text: job.remote ? 'Remote' : (job.location || 'Unknown'),\n    salary: job.salary_min ? job.salary_min + '-' + job.salary_max : (job.salary || ''),\n    description: job.description || job.summary || '',\n    posted_date: job.created_at || '',\n    tags: Array.isArray(job.skills) ? job.skills.map(s => s.value || s).join(',') : '',\n    job_id: 'otta_' + (job.id || job.slug || String(Math.random()).slice(2))\n  }\n}));"
+      },
+      "id": "node_021",
+      "name": "Normalize Otta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1400, 600]
+    },
+    {
+      "parameters": {
+        "mode": "append",
+        "options": {}
+      },
+      "id": "node_022",
+      "name": "Merge All Sources",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [0, 1000]
+    },
+    {
+      "parameters": {
+        "jsCode": "const existingItems = (() => { try { return $('Read Existing Job URLs').all(); } catch(e) { return []; } })();\nconst existingUrls = new Set(existingItems.map(i => (i.json.job_url || '')).filter(Boolean));\nconst existingKeys = new Set(existingItems.map(i => ((i.json.company || '') + '_' + (i.json.job_title || '')).toLowerCase()).filter(k => k !== '_'));\nconst seen = new Set();\nconst result = [];\nfor (const item of $input.all()) {\n  if (!item.json.job_title || item.json._empty) continue;\n  const url = item.json.job_url || '';\n  const key = ((item.json.company || '') + '_' + (item.json.job_title || '')).toLowerCase();\n  if (url && existingUrls.has(url)) continue;\n  if (key !== '_' && existingKeys.has(key)) continue;\n  if (url && seen.has(url)) continue;\n  if (!url && seen.has(key)) continue;\n  seen.add(url || key);\n  result.push(item);\n}\nreturn result;"
+      },
+      "id": "node_023",
+      "name": "Deduplicate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [0, 1200]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "YOUR_SPREADSHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Raw Jobs", "mode": "name" },
+        "columns": { "mappingMode": "defineBelow", "value": {
+          "mappingValues": [
+            { "column": "date_found", "fieldName": "={{ $now.toFormat('yyyy-MM-dd') }}" },
+            { "column": "source", "fieldName": "source" },
+            { "column": "job_title", "fieldName": "job_title" },
+            { "column": "company", "fieldName": "company" },
+            { "column": "job_url", "fieldName": "job_url" },
+            { "column": "location_text", "fieldName": "location_text" },
+            { "column": "salary", "fieldName": "salary" },
+            { "column": "description", "fieldName": "description" },
+            { "column": "posted_date", "fieldName": "posted_date" },
+            { "column": "tags", "fieldName": "tags" },
+            { "column": "job_id", "fieldName": "job_id" }
+          ]
+        }},
+        "options": {}
+      },
+      "id": "node_024",
+      "name": "Write Raw Jobs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [0, 1400],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "google_sheets_cred", "name": "Google Sheets OAuth2" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const rejectTerms = [\n  'us only','usa only','united states only','us-based only','based in the us',\n  'canada only','uk only','united kingdom only','eu only','europe only',\n  'australia only','new zealand only','must be based in','must live in',\n  'must be authorized to work','authorized to work in the','work permit required',\n  'local work permit','right to work','onsite','on-site','on site',\n  'office required','in-office','in office','hybrid','partially remote',\n  'remote within us','remote in us','remote in the us','remote within canada',\n  'remote within uk','remote within eu','fixed us hours','fixed est hours',\n  'fixed pst hours','fixed cet hours','fixed gmt hours','must relocate',\n  'relocation required'\n];\nconst strongKeepTerms = [\n  'worldwide remote','work from anywhere','global remote','anywhere in the world',\n  'hire via deel','hires via deel','deel.com','hires via remote.com','remote.com',\n  'hires via oyster','oyster.com','eor supported','employer of record',\n  'international contractors welcome','accepts contractors globally',\n  'anywhere','all timezones','all time zones'\n];\nreturn $input.all().map(item => {\n  const text = [\n    item.json.description || '',\n    item.json.location_text || '',\n    item.json.tags || '',\n    item.json.job_title || ''\n  ].join(' ').toLowerCase();\n  const hasStrongKeep = strongKeepTerms.some(t => text.includes(t));\n  const hasReject = rejectTerms.some(t => text.includes(t));\n  let hard_filter_result = 'passed';\n  let hard_filter_reason = '';\n  if (hasReject && !hasStrongKeep) {\n    hard_filter_result = 'rejected';\n    hard_filter_reason = rejectTerms.find(t => text.includes(t)) || 'Country/onsite restriction';\n  }\n  return { json: { ...item.json, hard_filter_result, hard_filter_reason } };\n});"
+      },
+      "id": "node_025",
+      "name": "Hard Taiwan Filter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [0, 1600]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.hard_filter_result }}",
+              "rightValue": "passed",
+              "operator": { "type": "string", "operation": "equals" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "node_026",
+      "name": "IF Hard Filter Passed",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [0, 1800]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "YOUR_SPREADSHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Rejected", "mode": "name" },
+        "columns": { "mappingMode": "defineBelow", "value": {
+          "mappingValues": [
+            { "column": "date_rejected", "fieldName": "={{ $now.toFormat('yyyy-MM-dd') }}" },
+            { "column": "job_title", "fieldName": "job_title" },
+            { "column": "company", "fieldName": "company" },
+            { "column": "job_url", "fieldName": "job_url" },
+            { "column": "reason", "fieldName": "hard_filter_reason" }
+          ]
+        }},
+        "options": {}
+      },
+      "id": "node_027",
+      "name": "Write Rejected Hard Filter",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [400, 2000],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "google_sheets_cred", "name": "Google Sheets OAuth2" } }
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "id": "node_028",
+      "name": "Split For AI Check",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [-400, 2000]
+    },
+    {
+      "parameters": {
+        "jsCode": "const job = $input.first().json;\nconst prompt = `You are filtering remote jobs for Jerry, who lives in Taiwan.\\n\\nThe most important rule: Jerry must be able to work this job while physically based in Taiwan.\\n\\nDo not pass the job only because it says \\\"remote.\\\"\\n\\nREJECT if:\\n- The job requires the worker to live in the US, Canada, UK, EU, Europe, Australia, or any specific country outside Taiwan\\n- The job requires local work authorization outside Taiwan\\n- The job is hybrid, onsite, or remote within one country only\\n- The job requires fixed working hours that would force Jerry to work midnight or early morning in Taiwan (UTC+8)\\n\\nKEEP if ANY of these is true:\\n- The job says worldwide remote, work from anywhere, or global remote\\n- The job says APAC remote\\n- The job allows international contractors\\n- The job accepts people based anywhere\\n- The company hires through EOR, Deel, Remote.com, Oyster, or B2B contractor agreement\\n\\nReturn JSON only — no other text:\\n{\\n  \\\"taiwan_eligible\\\": \\\"yes/no/unclear\\\",\\n  \\\"reason\\\": \\\"one short sentence\\\",\\n  \\\"location_risk\\\": \\\"low/medium/high\\\",\\n  \\\"timezone_risk\\\": \\\"low/medium/high\\\",\\n  \\\"contractor_possible\\\": \\\"yes/no/unclear\\\",\\n  \\\"decision\\\": \\\"keep/reject/manual_check\\\"\\n}\\n\\nJob Title: ${job.job_title || ''}\\nCompany: ${job.company || ''}\\nLocation: ${job.location_text || ''}\\nTags: ${job.tags || ''}\\nJob Post:\\n${(job.description || '').slice(0, 3000)}`;\nconst requestBody = {\n  model: 'gpt-4o-mini',\n  messages: [{ role: 'user', content: prompt }],\n  response_format: { type: 'json_object' },\n  temperature: 0.1,\n  max_tokens: 400\n};\nreturn [{ json: { ...job, _ai_request_body: JSON.stringify(requestBody) } }];"
+      },
+      "id": "node_029",
+      "name": "Prepare AI Request",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-400, 2200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "={{ $json._ai_request_body }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "Content-Type", "value": "application/json" }]
+        },
+        "options": { "timeout": 30000, "response": { "response": { "responseFormat": "json" } } }
+      },
+      "id": "node_030",
+      "name": "AI Taiwan Eligibility Check",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-400, 2400],
+      "continueOnFail": true,
+      "credentials": { "openAiApi": { "id": "openai_cred", "name": "OpenAI API" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first();\nconst job = item.json;\n\n// Parse AI response\nlet ai = { taiwan_eligible: 'unclear', reason: 'No AI response', location_risk: 'medium', timezone_risk: 'medium', contractor_possible: 'unclear', decision: 'manual_check' };\ntry {\n  const content = job?.choices?.[0]?.message?.content;\n  if (content) ai = { ...ai, ...JSON.parse(content) };\n} catch(e) {\n  ai.reason = 'Parse error: ' + e.message;\n}\n\n// Async level detection\nconst text = ((job.description || '') + ' ' + (job.job_title || '')).toLowerCase();\nconst asyncHigh = ['async','asynchronous','async-first','async first','flexible hours','flexible schedule','low meeting','no meetings','work across time zones','work across timezones'];\nconst asyncMed  = ['distributed team','remote-first','remote first','global team','across time zones','flexible working'];\nconst asyncLow  = ['strict 9-5','strict 9 to 5','fixed us hours','fixed est','fixed pst','fixed cet','daily live calls required','must overlap full business day','real-time collaboration required','synchronous'];\nconst asyncLevel = asyncLow.some(t => text.includes(t)) ? 'low' : asyncHigh.some(t => text.includes(t)) ? 'high' : asyncMed.some(t => text.includes(t)) ? 'medium' : 'medium';\n\n// Role fit\nconst title = (job.job_title || '').toLowerCase();\nconst roleHighTerms = ['data analyst','data scientist','bi analyst','business intelligence','marketing analyst','performance marketing','growth analyst','ai marketing','ai automation','ai workflow','martech','marketing data','analytics engineer','reporting analyst','marketing science'];\nconst roleMedTerms = ['analytics','digital marketing','growth hacker','seo specialist','ppc analyst','paid media','paid search','product analyst','content strategist','creative strategist'];\nconst isHigh = roleHighTerms.some(t => title.includes(t) || text.includes(t));\nconst isMed  = !isHigh && roleMedTerms.some(t => title.includes(t) || text.includes(t));\nconst roleCategory = isHigh ? (roleHighTerms.find(t => title.includes(t)) || 'data/ai/marketing') : (isMed ? 'adjacent' : 'other');\n\n// Salary parsing\nconst salaryStr = (job.salary || '').replace(/,/g,'');\nconst nums = (salaryStr.match(/\\d{3,6}/g) || []).map(Number).filter(n => n >= 100);\nconst maxSalary = nums.length ? Math.max(...nums) : 0;\n\n// Score calculation\nlet score = 0;\nconst te = (ai.taiwan_eligible || 'unclear').toLowerCase();\nconst lr = (ai.location_risk || 'medium').toLowerCase();\nconst tz = (ai.timezone_risk || 'medium').toLowerCase();\n\n// Taiwan eligibility (0-40)\nif (te === 'yes' && lr === 'low')       score += 40;\nelse if (te === 'yes')                   score += 35;\nelse if (lr === 'low')                   score += 30;\nelse if (te === 'unclear' && lr !== 'high') score += 20;\n\n// Async fit (0-25)\nif (asyncLevel === 'high')   score += 25;\nelse if (asyncLevel === 'medium') score += 15;\n\n// Role fit (0-25)\nif (isHigh) score += 25;\nelse if (isMed) score += 15;\n\n// Salary (0-25)\nif (maxSalary >= 5000) score += 25;\nelse if (maxSalary >= 3000) score += 15;\nelse if (maxSalary > 0 || salaryStr.trim()) score += 10;\n\n// One-sentence rule check\nconst passesRule = te !== 'no' && lr !== 'high' && tz !== 'high' && asyncLevel !== 'low';\n\n// Decision\nlet decision = 'reject';\nif (!passesRule || ai.decision === 'reject') {\n  decision = 'reject';\n} else if (score >= 85 && te === 'yes') {\n  decision = 'apply';\n} else if (score >= 70) {\n  decision = te === 'unclear' ? 'manual_check' : 'keep';\n} else {\n  decision = 'reject';\n}\n\nconst whyParts = [];\nif (te === 'yes' && lr === 'low') whyParts.push('Taiwan eligible (low risk)');\nelse if (te === 'yes') whyParts.push('Taiwan eligible');\nelse if (te === 'unclear') whyParts.push('Taiwan eligibility unclear — needs review');\nif (asyncLevel === 'high') whyParts.push('fully async');\nif (isHigh) whyParts.push('strong role match');\nif (maxSalary >= 5000) whyParts.push('$5k+/mo salary');\nelse if (maxSalary >= 3000) whyParts.push('$3k+/mo salary');\n\nreturn [{\n  json: {\n    date_found: $now.toFormat('yyyy-MM-dd'),\n    job_title: job.job_title || '',\n    company: job.company || '',\n    job_url: job.job_url || '',\n    source: job.source || '',\n    location_text: job.location_text || '',\n    salary: job.salary || '',\n    description: job.description || '',\n    posted_date: job.posted_date || '',\n    tags: job.tags || '',\n    job_id: job.job_id || '',\n    score: score,\n    taiwan_eligible: te,\n    taiwan_reason: ai.reason || '',\n    location_risk: lr,\n    timezone_risk: tz,\n    contractor_possible: ai.contractor_possible || 'unclear',\n    async_level: asyncLevel,\n    role_category: roleCategory,\n    why_good_fit: whyParts.join(', ') || 'Review manually',\n    decision: decision,\n    application_status: decision === 'apply' ? 'ready_to_apply' : '',\n    notes: ''\n  }\n}];"
+      },
+      "id": "node_031",
+      "name": "Parse AI Score",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-400, 2600]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.score }}",
+              "rightValue": 70,
+              "operator": { "type": "number", "operation": "gte" }
+            },
+            {
+              "leftValue": "={{ $json.decision }}",
+              "rightValue": "reject",
+              "operator": { "type": "string", "operation": "notEquals" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "node_032",
+      "name": "IF Score 70 Plus",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-400, 2800]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "YOUR_SPREADSHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Filtered Jobs", "mode": "name" },
+        "columns": { "mappingMode": "defineBelow", "value": {
+          "mappingValues": [
+            { "column": "date_found", "fieldName": "date_found" },
+            { "column": "score", "fieldName": "score" },
+            { "column": "job_title", "fieldName": "job_title" },
+            { "column": "company", "fieldName": "company" },
+            { "column": "job_url", "fieldName": "job_url" },
+            { "column": "salary", "fieldName": "salary" },
+            { "column": "taiwan_eligible", "fieldName": "taiwan_eligible" },
+            { "column": "taiwan_reason", "fieldName": "taiwan_reason" },
+            { "column": "location_risk", "fieldName": "location_risk" },
+            { "column": "timezone_risk", "fieldName": "timezone_risk" },
+            { "column": "contractor_possible", "fieldName": "contractor_possible" },
+            { "column": "async_level", "fieldName": "async_level" },
+            { "column": "role_category", "fieldName": "role_category" },
+            { "column": "why_good_fit", "fieldName": "why_good_fit" },
+            { "column": "decision", "fieldName": "decision" },
+            { "column": "application_status", "fieldName": "application_status" },
+            { "column": "notes", "fieldName": "notes" }
+          ]
+        }},
+        "options": {}
+      },
+      "id": "node_033",
+      "name": "Write Filtered Jobs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [-800, 3000],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "google_sheets_cred", "name": "Google Sheets OAuth2" } }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "YOUR_SPREADSHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Rejected", "mode": "name" },
+        "columns": { "mappingMode": "defineBelow", "value": {
+          "mappingValues": [
+            { "column": "date_rejected", "fieldName": "={{ $now.toFormat('yyyy-MM-dd') }}" },
+            { "column": "job_title", "fieldName": "job_title" },
+            { "column": "company", "fieldName": "company" },
+            { "column": "job_url", "fieldName": "job_url" },
+            { "column": "reason", "fieldName": "taiwan_reason" }
+          ]
+        }},
+        "options": {}
+      },
+      "id": "node_034",
+      "name": "Write Rejected Low Score",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [0, 3000],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "google_sheets_cred", "name": "Google Sheets OAuth2" } }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.score }}",
+              "rightValue": 85,
+              "operator": { "type": "number", "operation": "gte" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "node_035",
+      "name": "IF Score 85 Plus",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-800, 3200]
+    },
+    {
+      "parameters": {
+        "jsCode": "const job = $input.first().json;\nconst prompt = `Write a short cover letter for Jerry.\\n\\nJerry is based in Taiwan and wants async global remote work.\\n\\nBackground:\\n- Bilingual: English (native) and Mandarin\\n- Grew up in California and Taiwan\\n- Digital marketing background: SEO, PPC, Google Ads, Meta Ads, GA4\\n- Data science bootcamp graduate\\n- Technical: Python, SQL, Tableau, Power BI\\n- AI tools: ChatGPT, Claude, Gemini, Cursor\\n- Projects: dashboards, EDA, machine learning, customer segmentation, fraud detection, marketing analytics\\n\\nThe job:\\nTitle: ${job.job_title}\\nCompany: ${job.company}\\nDescription: ${(job.description || '').slice(0, 1500)}\\n\\nWrite the cover letter specifically for this role. Mention at least one concrete way Jerry can help:\\n- Reduce manual analysis time\\n- Improve reporting speed\\n- Connect marketing data to business decisions\\n- Build AI-assisted workflows\\n- Turn messy data into action\\n\\nRequirements:\\n- Under 220 words\\n- Tone: confident, direct, human, not desperate\\n- Do NOT start with \\\"Dear Hiring Manager\\\" — use a strong opening line instead\\n- Do NOT use clichés like \\\"I am writing to express my interest\\\"\\n- Mention Taiwan/async availability naturally\\n\\nReturn only the cover letter text.`;\nconst requestBody = {\n  model: 'gpt-4o-mini',\n  messages: [{ role: 'user', content: prompt }],\n  temperature: 0.7,\n  max_tokens: 500\n};\nreturn [{ json: { ...job, _cover_letter_request: JSON.stringify(requestBody) } }];"
+      },
+      "id": "node_036",
+      "name": "Prepare Cover Letter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-800, 3400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "string",
+        "body": "={{ $json._cover_letter_request }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "Content-Type", "value": "application/json" }]
+        },
+        "options": { "timeout": 45000, "response": { "response": { "responseFormat": "json" } } }
+      },
+      "id": "node_037",
+      "name": "Generate Cover Letter",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-800, 3600],
+      "continueOnFail": true,
+      "credentials": { "openAiApi": { "id": "openai_cred", "name": "OpenAI API" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $input.first();\nconst job = item.json;\nlet coverLetter = '';\ntry {\n  coverLetter = job?.choices?.[0]?.message?.content || '';\n} catch(e) { coverLetter = 'Cover letter generation failed.'; }\nreturn [{ json: { ...job, cover_letter: coverLetter } }];"
+      },
+      "id": "node_037b",
+      "name": "Extract Cover Letter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-800, 3800]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": { "__rl": true, "value": "YOUR_SPREADSHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Applied", "mode": "name" },
+        "columns": { "mappingMode": "defineBelow", "value": {
+          "mappingValues": [
+            { "column": "date_applied", "fieldName": "={{ $now.toFormat('yyyy-MM-dd') }}" },
+            { "column": "job_title", "fieldName": "job_title" },
+            { "column": "company", "fieldName": "company" },
+            { "column": "job_url", "fieldName": "job_url" },
+            { "column": "cover_letter_used", "fieldName": "cover_letter" },
+            { "column": "status", "fieldName": "=draft_ready" },
+            { "column": "follow_up_date", "fieldName": "=" },
+            { "column": "notes", "fieldName": "=Score: {{ $json.score }} | {{ $json.why_good_fit }}" }
+          ]
+        }},
+        "options": {}
+      },
+      "id": "node_038",
+      "name": "Save Cover Letter Draft",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [-800, 4000],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "google_sheets_cred", "name": "Google Sheets OAuth2" } }
+    },
+    {
+      "parameters": {
+        "operation": "readRows",
+        "documentId": { "__rl": true, "value": "YOUR_SPREADSHEET_ID", "mode": "id" },
+        "sheetName": { "__rl": true, "value": "Filtered Jobs", "mode": "name" },
+        "filtersUI": {
+          "values": [
+            { "lookupColumn": "date_found", "lookupValue": "={{ $now.toFormat('yyyy-MM-dd') }}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "node_039",
+      "name": "Read Todays Filtered Jobs",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [400, 2200],
+      "credentials": { "googleSheetsOAuth2Api": { "id": "google_sheets_cred", "name": "Google Sheets OAuth2" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const jobs = $input.all().map(i => i.json).filter(j => j.job_title);\nconst date = $now.setZone('Asia/Taipei').toFormat('cccc, LLLL d yyyy');\nconst kept = jobs.filter(j => j.decision !== 'reject').sort((a,b) => (Number(b.score)||0) - (Number(a.score)||0));\nconst topJobs = kept.slice(0, 10);\nconst manual = kept.filter(j => j.decision === 'manual_check');\nconst rejected = jobs.filter(j => j.decision === 'reject');\nconst rejectedUS = rejected.filter(j => /us only|united states|usa only/i.test(j.taiwan_reason||j.notes||'')).length;\nconst rejectedEU = rejected.filter(j => /eu only|europe only/i.test(j.taiwan_reason||j.notes||'')).length;\nconst rejectedHybrid = rejected.filter(j => /hybrid|onsite/i.test(j.taiwan_reason||j.notes||'')).length;\nconst rejectedTZ = rejected.filter(j => j.timezone_risk === 'high').length;\n\nlet html = `<!DOCTYPE html><html><body style=\"font-family:Arial,sans-serif;max-width:680px;margin:0 auto;padding:24px;color:#222\">`;\nhtml += `<h1 style=\"color:#1a1a2e;border-bottom:3px solid #0066cc;padding-bottom:12px\">Daily Taiwan Eligible Async Remote Jobs</h1>`;\nhtml += `<p style=\"color:#555;margin-top:4px\">${date} &bull; Taiwan time (UTC+8)</p>`;\nhtml += `<p style=\"font-size:18px\"><strong>${kept.length}</strong> jobs passed &bull; <strong>${rejected.length}</strong> rejected &bull; <strong>${manual.length}</strong> manual check</p>`;\nhtml += `<hr style=\"border:1px solid #eee\">`;\n\nif (topJobs.length === 0) {\n  html += `<p style=\"color:#666;font-size:16px\">No qualifying jobs found today. The filters held. Check back tomorrow.</p>`;\n} else {\n  html += `<h2 style=\"color:#0066cc\">Top Jobs Today</h2>`;\n  topJobs.forEach((j, i) => {\n    const scoreColor = Number(j.score) >= 85 ? '#00aa44' : Number(j.score) >= 70 ? '#0066cc' : '#888';\n    const badge = Number(j.score) >= 85 ? ' ⭐ APPLY NOW' : '';\n    html += `<div style=\"border:1px solid #ddd;border-radius:10px;padding:18px;margin:18px 0;border-left:5px solid ${scoreColor}\">`;\n    html += `<h3 style=\"margin:0 0 8px 0;color:#111\">${i+1}. ${j.job_title||'Untitled'}${badge}</h3>`;\n    html += `<table style=\"width:100%;font-size:14px\"><tr><td style=\"padding:3px 8px 3px 0;color:#555;width:40%\"><strong>Company</strong></td><td>${j.company||'Unknown'}</td></tr>`;\n    html += `<tr><td style=\"padding:3px 8px 3px 0;color:#555\"><strong>Score</strong></td><td style=\"color:${scoreColor};font-weight:bold\">${j.score}/100</td></tr>`;\n    html += `<tr><td style=\"padding:3px 8px 3px 0;color:#555\"><strong>Taiwan Eligible</strong></td><td>${j.taiwan_eligible||'unclear'}</td></tr>`;\n    html += `<tr><td style=\"padding:3px 8px 3px 0;color:#555\"><strong>Reason</strong></td><td>${j.taiwan_reason||'N/A'}</td></tr>`;\n    html += `<tr><td style=\"padding:3px 8px 3px 0;color:#555\"><strong>Async Level</strong></td><td>${j.async_level||'medium'}</td></tr>`;\n    html += `<tr><td style=\"padding:3px 8px 3px 0;color:#555\"><strong>Timezone Risk</strong></td><td>${j.timezone_risk||'medium'}</td></tr>`;\n    html += `<tr><td style=\"padding:3px 8px 3px 0;color:#555\"><strong>Salary</strong></td><td>${j.salary||'Not listed'}</td></tr>`;\n    html += `<tr><td style=\"padding:3px 8px 3px 0;color:#555\"><strong>Why it fits</strong></td><td>${j.why_good_fit||'N/A'}</td></tr></table>`;\n    html += `<p style=\"margin-top:12px;margin-bottom:0\"><a href=\"${j.job_url||'#'}\" style=\"background:#0066cc;color:#fff;padding:8px 18px;border-radius:6px;text-decoration:none;font-weight:bold\">Apply Now →</a></p>`;\n    html += `</div>`;\n  });\n}\n\nif (manual.length > 0) {\n  html += `<h2 style=\"color:#e07b00\">Manual Check Required (${manual.length})</h2><p style=\"color:#666\">Taiwan eligibility is unclear but score is high. Review these manually.</p>`;\n  manual.forEach(j => {\n    html += `<div style=\"border:1px solid #f0c060;border-radius:6px;padding:12px;margin:8px 0;background:#fffbf0\">`;\n    html += `<strong><a href=\"${j.job_url||'#'}\" style=\"color:#333\">${j.job_title}</a></strong> @ ${j.company} &bull; Score: ${j.score}`;\n    html += `<br><small style=\"color:#777\">${j.taiwan_reason||''}</small></div>`;\n  });\n}\n\nhtml += `<h2 style=\"color:#cc2200\">Rejected Summary</h2>`;\nhtml += `<ul style=\"font-size:14px;color:#555\">`;\nhtml += `<li>US Only: <strong>${rejectedUS}</strong></li>`;\nhtml += `<li>EU Only: <strong>${rejectedEU}</strong></li>`;\nhtml += `<li>Hybrid / Onsite: <strong>${rejectedHybrid}</strong></li>`;\nhtml += `<li>High Timezone Risk: <strong>${rejectedTZ}</strong></li>`;\nhtml += `<li>Total Rejected: <strong>${rejected.length}</strong></li>`;\nhtml += `</ul>`;\nhtml += `<hr style=\"border:1px solid #eee;margin-top:32px\">`;\nhtml += `<p style=\"color:#aaa;font-size:12px\">Jerry's one rule: <em>I can do this job while living in Taiwan, without moving, without foreign work authorization, and without destroying my sleep schedule.</em></p>`;\nhtml += `</body></html>`;\n\nreturn [{ json: { digest_html: html, top_count: topJobs.length, kept_count: kept.length, rejected_count: rejected.length, manual_count: manual.length } }];"
+      },
+      "id": "node_040",
+      "name": "Compile Daily Digest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [400, 2400]
+    },
+    {
+      "parameters": {
+        "sendTo": "419vive@gmail.com",
+        "subject": "=Daily Taiwan Async Jobs – {{ $now.setZone('Asia/Taipei').toFormat('yyyy-MM-dd') }} ({{ $json.kept_count }} kept, {{ $json.rejected_count }} rejected)",
+        "emailType": "html",
+        "message": "={{ $json.digest_html }}",
+        "options": {}
+      },
+      "id": "node_041",
+      "name": "Send Gmail Digest",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [400, 2600],
+      "credentials": { "gmailOAuth2": { "id": "gmail_cred", "name": "Gmail OAuth2" } }
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [[{ "node": "Read Existing Job URLs", "type": "main", "index": 0 }]]
+    },
+    "Read Existing Job URLs": {
+      "main": [[
+        { "node": "Fetch Remote OK",     "type": "main", "index": 0 },
+        { "node": "Fetch Remotive",      "type": "main", "index": 0 },
+        { "node": "Fetch WWR RSS",       "type": "main", "index": 0 },
+        { "node": "Fetch Himalayas RSS", "type": "main", "index": 0 },
+        { "node": "Fetch Dynamite RSS",  "type": "main", "index": 0 },
+        { "node": "Fetch Wellfound",     "type": "main", "index": 0 },
+        { "node": "Fetch YC WaaS",       "type": "main", "index": 0 },
+        { "node": "Fetch Otta",          "type": "main", "index": 0 }
+      ]]
+    },
+    "Fetch Remote OK":     { "main": [[{ "node": "Normalize Remote OK",  "type": "main", "index": 0 }]] },
+    "Normalize Remote OK": { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 0 }]] },
+    "Fetch Remotive":      { "main": [[{ "node": "Normalize Remotive",   "type": "main", "index": 0 }]] },
+    "Normalize Remotive":  { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 1 }]] },
+    "Fetch WWR RSS":       { "main": [[{ "node": "Parse WWR XML",        "type": "main", "index": 0 }]] },
+    "Parse WWR XML":       { "main": [[{ "node": "Normalize WWR",        "type": "main", "index": 0 }]] },
+    "Normalize WWR":       { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 2 }]] },
+    "Fetch Himalayas RSS": { "main": [[{ "node": "Parse Himalayas XML",  "type": "main", "index": 0 }]] },
+    "Parse Himalayas XML": { "main": [[{ "node": "Normalize Himalayas",  "type": "main", "index": 0 }]] },
+    "Normalize Himalayas": { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 3 }]] },
+    "Fetch Dynamite RSS":  { "main": [[{ "node": "Parse Dynamite XML",   "type": "main", "index": 0 }]] },
+    "Parse Dynamite XML":  { "main": [[{ "node": "Normalize Dynamite",   "type": "main", "index": 0 }]] },
+    "Normalize Dynamite":  { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 4 }]] },
+    "Fetch Wellfound":     { "main": [[{ "node": "Normalize Wellfound",  "type": "main", "index": 0 }]] },
+    "Normalize Wellfound": { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 5 }]] },
+    "Fetch YC WaaS":       { "main": [[{ "node": "Normalize YC",         "type": "main", "index": 0 }]] },
+    "Normalize YC":        { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 6 }]] },
+    "Fetch Otta":          { "main": [[{ "node": "Normalize Otta",        "type": "main", "index": 0 }]] },
+    "Normalize Otta":      { "main": [[{ "node": "Merge All Sources", "type": "main", "index": 7 }]] },
+    "Merge All Sources": { "main": [[{ "node": "Deduplicate", "type": "main", "index": 0 }]] },
+    "Deduplicate":       { "main": [[{ "node": "Write Raw Jobs", "type": "main", "index": 0 }]] },
+    "Write Raw Jobs":    { "main": [[{ "node": "Hard Taiwan Filter", "type": "main", "index": 0 }]] },
+    "Hard Taiwan Filter":{ "main": [[{ "node": "IF Hard Filter Passed", "type": "main", "index": 0 }]] },
+    "IF Hard Filter Passed": {
+      "main": [
+        [{ "node": "Split For AI Check",        "type": "main", "index": 0 }],
+        [{ "node": "Write Rejected Hard Filter", "type": "main", "index": 0 }]
+      ]
+    },
+    "Split For AI Check": {
+      "main": [
+        [{ "node": "Prepare AI Request",        "type": "main", "index": 0 }],
+        [{ "node": "Read Todays Filtered Jobs",  "type": "main", "index": 0 }]
+      ]
+    },
+    "Prepare AI Request":         { "main": [[{ "node": "AI Taiwan Eligibility Check", "type": "main", "index": 0 }]] },
+    "AI Taiwan Eligibility Check":{ "main": [[{ "node": "Parse AI Score",              "type": "main", "index": 0 }]] },
+    "Parse AI Score":             { "main": [[{ "node": "IF Score 70 Plus",            "type": "main", "index": 0 }]] },
+    "IF Score 70 Plus": {
+      "main": [
+        [{ "node": "Write Filtered Jobs",    "type": "main", "index": 0 }],
+        [{ "node": "Write Rejected Low Score","type": "main", "index": 0 }]
+      ]
+    },
+    "Write Filtered Jobs":     { "main": [[{ "node": "IF Score 85 Plus", "type": "main", "index": 0 }]] },
+    "IF Score 85 Plus": {
+      "main": [
+        [{ "node": "Prepare Cover Letter", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Prepare Cover Letter":   { "main": [[{ "node": "Generate Cover Letter",  "type": "main", "index": 0 }]] },
+    "Generate Cover Letter":  { "main": [[{ "node": "Extract Cover Letter",   "type": "main", "index": 0 }]] },
+    "Extract Cover Letter":   { "main": [[{ "node": "Save Cover Letter Draft","type": "main", "index": 0 }]] },
+    "Read Todays Filtered Jobs": { "main": [[{ "node": "Compile Daily Digest", "type": "main", "index": 0 }]] },
+    "Compile Daily Digest":      { "main": [[{ "node": "Send Gmail Digest",    "type": "main", "index": 0 }]] }
+  },
+  "active": false,
+  "settings": {
+    "timezone": "Asia/Taipei",
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "pinData": {},
+  "versionId": "1",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": ""
+  }
+}
