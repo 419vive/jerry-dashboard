@@ -1,8 +1,14 @@
 # Daily Taiwan Eligible Async Remote Job Hunter
 
-An n8n workflow that finds async, global remote jobs Jerry can do while
-physically based in Taiwan — no relocation, no US/EU/UK/Canada/Australia work
-authorization, no fixed midnight hours.
+An n8n workflow that finds async, global remote **AI Agent** jobs Jerry can do
+while physically based in Taiwan — no relocation, no US/EU/UK/Canada/Australia
+work authorization, no fixed midnight hours.
+
+**Job field focus: AI Agent roles** — AI Agent Engineer/Developer, Agentic AI
+Engineer, LLM agent building, multi-agent systems, AI automation/workflow
+consulting, applied AI engineer, prompt/RAG engineer, chatbot developer. All
+other requirements (Taiwan eligibility, async-first, scoring, sheets, alerts,
+digest) are unchanged from the general version of this workflow.
 
 Every job that survives the pipeline must pass this sentence:
 
@@ -60,7 +66,10 @@ workflow does not auto-apply)
    `company`, `job_url`, `source`, `location_text`, `salary`, `description`,
    `posted_date`, `tags`).
 4. **Keyword match** — keeps only postings mentioning async/global/remote
-   role keywords from the brief.
+   signals (worldwide remote, work from anywhere, ...) or AI Agent field
+   keywords (ai agent engineer, agentic ai, llm agent, multi-agent,
+   ai automation engineer, ai workflow consultant, prompt engineer, rag
+   engineer, chatbot developer, langchain, crewai, autogen, ...).
 5. **Dedupe** — checks `job_url` (primary key) and `company + job_title`
    (fallback) against the existing Raw Jobs sheet; new jobs get appended
    to Raw Jobs regardless of what happens next.
@@ -72,10 +81,11 @@ workflow does not auto-apply)
    (`taiwan_eligible`, `location_risk`, `timezone_risk`, `decision`, ...).
 8. **Async & timezone filter** — tags `async_level` and rejects strict-hours
    postings.
-9. **Role fit + scoring** — 0–40 Taiwan-eligibility points, 0–25 async-fit
-   points, 0–25 role-fit points, 0–25 salary points; computes the final
-   `decision` (`apply_immediately` / `manual_check` / `keep_review` /
-   `reject`) using the brief's step-14 rules.
+9. **AI Agent role fit + scoring** — 0–40 Taiwan-eligibility points, 0–25
+   async-fit points, 0–25 role-fit points (core AI Agent titles score higher
+   than adjacent automation/AI-adjacent roles), 0–25 salary points; computes
+   the final `decision` (`apply_immediately` / `manual_check` /
+   `keep_review` / `reject`) using the brief's step-14 rules.
 10. **Filtered Jobs** — anything not rejected (score ≥ 70) is appended.
     Score ≥ 85 also triggers an instant Telegram alert and an AI-drafted
     cover letter (≤ 220 words) saved back into the row.
