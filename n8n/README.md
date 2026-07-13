@@ -10,6 +10,11 @@ consulting, applied AI engineer, prompt/RAG engineer, chatbot developer. All
 other requirements (Taiwan eligibility, async-first, scoring, sheets, alerts,
 digest) are unchanged from the general version of this workflow.
 
+**Freshness rule**: only jobs posted within the current calendar month are
+recommended. Older postings are rejected as `stale_posting` (unknown or
+unparseable `posted_date` values are not penalized — they pass through, since
+we can't verify them either way).
+
 Every job that survives the pipeline must pass this sentence:
 
 > I can do this job while living in Taiwan, without moving, without foreign
@@ -75,7 +80,8 @@ workflow does not auto-apply)
    to Raw Jobs regardless of what happens next.
 6. **Taiwan hard filter** — keyword rejects (US/Canada/UK/EU/Australia-only,
    hybrid/onsite, "must be based in", fixed US/EU hours) before spending an
-   AI call.
+   AI call. Also enforces the freshness rule: `posted_date` must fall in the
+   current calendar month, or the job is rejected as `stale_posting`.
 7. **AI Taiwan eligibility check** — calls Claude with the exact eligibility
    prompt from the brief, per job, and parses the JSON verdict
    (`taiwan_eligible`, `location_risk`, `timezone_risk`, `decision`, ...).
@@ -90,8 +96,8 @@ workflow does not auto-apply)
     Score ≥ 85 also triggers an instant Telegram alert and an AI-drafted
     cover letter (≤ 220 words) saved back into the row.
 11. **Daily digest** — top jobs (score sorted), the manual-check list, and a
-    rejection breakdown (US only / EU only / hybrid / timezone risk counts)
-    sent via Telegram and Gmail.
+    rejection breakdown (US only / EU only / hybrid / timezone risk / stale
+    posting counts) sent via Telegram and Gmail.
 
 Every reject branch writes to the **Rejected** sheet with a reason, so
 nothing disappears silently.
