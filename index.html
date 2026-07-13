@@ -407,19 +407,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 <!-- ══ STATS ════════════════════════════════════════════════════ -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-num">85</div>
+    <div class="stat-num">106</div>
     <div class="stat-label">Total Found</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num danger">16</div>
+    <div class="stat-num danger">17</div>
     <div class="stat-label">Critical</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num warn">40</div>
+    <div class="stat-num warn">47</div>
     <div class="stat-label">High Priority</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">23</div>
+    <div class="stat-num">31</div>
     <div class="stat-label">Medium</div>
   </div>
   <div class="stat-item">
@@ -481,7 +481,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 
   <!-- Filter Bar -->
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterCards('all', this)">All (85)</button>
+    <button class="filter-btn active" onclick="filterCards('all', this)">All (106)</button>
     <button class="filter-btn" onclick="filterCards('communication', this)">Communication</button>
     <button class="filter-btn" onclick="filterCards('cultural', this)">Cultural</button>
     <button class="filter-btn" onclick="filterCards('marketing', this)">Marketing</button>
@@ -497,9 +497,31 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   <div class="section" id="sec-critical">
     <div class="section-head">
       <h2>🔴 Critical Priority — Apply Now</h2>
-      <span class="section-badge danger">16</span>
+      <span class="section-badge danger">17</span>
     </div>
     <div class="card-grid">
+    <div class="opp-card critical" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill critical">critical</span>
+        <span class="platform-pill">104 人力銀行</span>
+      </div>
+      <div class="deadline-banner ok">✓ 本月 Active (遠端)</div>
+      <div class="card-body">
+        <div class="card-company">TW 職缺 — 盛晶科技 (live)</div>
+        <div class="card-role">[研發部] AI Agent 開發工程師</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 遠端工作 (Remote) — 桃園</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/部署 AI Agent</li><li>LLM/RAG/API 整合</li><li>中英雙語</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題+中英母語。主打 23K 行 production AI agent 系統+客戶交付。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">production AI agent 實績</span><span class="chip strength">全端</span><span class="chip strength">客戶交付/顧問</span><span class="chip weakness">部分需通勤(非遠端者)</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>遠端優先(盛晶),在地當保底</li><li>作品集主打 agent 架構</li><li>只投本月更新的</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.104.com.tw/jobs/search/?keyword=AI%20agent&order=15&asc=0&mode=s" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
     <div class="opp-card critical" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill critical">critical</span>
@@ -858,9 +880,75 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   <div class="section" id="sec-high">
     <div class="section-head">
       <h2>🟡 High Priority</h2>
-      <span class="section-badge warn">40</span>
+      <span class="section-badge warn">47</span>
     </div>
     <div class="card-grid">
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">104 人力銀行</span>
+      </div>
+      <div class="deadline-banner ok">✓ 2026-07-07</div>
+      <div class="card-body">
+        <div class="card-company">TW 職缺 — 沛智科技 Genibuilder (live)</div>
+        <div class="card-role">AI Agent 工程師</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 台北市中正區 (台大育成)</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/部署 AI Agent</li><li>LLM/RAG/API 整合</li><li>中英雙語</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題+中英母語。主打 23K 行 production AI agent 系統+客戶交付。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">production AI agent 實績</span><span class="chip strength">全端</span><span class="chip strength">客戶交付/顧問</span><span class="chip weakness">部分需通勤(非遠端者)</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>遠端優先(盛晶),在地當保底</li><li>作品集主打 agent 架構</li><li>只投本月更新的</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.104.com.tw/job/8mki1" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">104 人力銀行</span>
+      </div>
+      <div class="deadline-banner ok">✓ 2026-07-07~10</div>
+      <div class="card-body">
+        <div class="card-company">TW 職缺 — 伊雲谷數位科技 (live)</div>
+        <div class="card-role"><AI Agent> AI Engineer / Solution Architect / Specialist</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 新北市三重區</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 月薪 50K+</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/部署 AI Agent</li><li>LLM/RAG/API 整合</li><li>中英雙語</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題+中英母語。主打 23K 行 production AI agent 系統+客戶交付。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">production AI agent 實績</span><span class="chip strength">全端</span><span class="chip strength">客戶交付/顧問</span><span class="chip weakness">部分需通勤(非遠端者)</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>遠端優先(盛晶),在地當保底</li><li>作品集主打 agent 架構</li><li>只投本月更新的</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.104.com.tw/jobs/search/?keyword=AI%20agent&order=15&asc=0&mode=s" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">104 人力銀行</span>
+      </div>
+      <div class="deadline-banner ok">✓ 2026-07-10</div>
+      <div class="card-body">
+        <div class="card-company">TW 職缺 — 搜樂數位行銷 (live)</div>
+        <div class="card-role">AI應用全端工程師 (AI agent / Full-stack)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 台中市西屯區</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 年薪 100 萬+</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/部署 AI Agent</li><li>LLM/RAG/API 整合</li><li>中英雙語</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題+中英母語。主打 23K 行 production AI agent 系統+客戶交付。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">production AI agent 實績</span><span class="chip strength">全端</span><span class="chip strength">客戶交付/顧問</span><span class="chip weakness">部分需通勤(非遠端者)</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>遠端優先(盛晶),在地當保底</li><li>作品集主打 agent 架構</li><li>只投本月更新的</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.104.com.tw/jobs/search/?keyword=AI%20agent&order=15&asc=0&mode=s" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
@@ -1740,6 +1828,94 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Build one strong AI-agent portfolio profile</li><li>Reuse it across platforms</li><li>Only bid on gigs posted this month</li></ol></div>
       </div>
       <div class="card-actions"><a href="https://arc.dev/remote-jobs/ai" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">104 人力銀行</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — 104 人力銀行</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Job Site)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.104.com.tw/jobs/search/?keyword=AI%20agent&order=15&asc=0&page=1&mode=s&jobsource=2018indexpoc" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">CakeResume</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — CakeResume</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Job Site)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.cake.me/jobs?q=AI%20agent&location_list%5B0%5D=Taiwan" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Yourator</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — Yourator</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Job Site)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.yourator.co/jobs?term%5B%5D=AI%20agent" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">104 外包網 (case.104)</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — 104 外包網 (case.104)</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Outsource)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Contract / 接案</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://case.104.com.tw/casestudy/search?keyword=AI%20agent" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div></div>
   </div>
 
@@ -1747,9 +1923,31 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   <div class="section" id="sec-medium">
     <div class="section-head">
       <h2>🟢 Medium Priority</h2>
-      <span class="section-badge success">23</span>
+      <span class="section-badge success">31</span>
     </div>
     <div class="card-grid">
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">104 人力銀行</span>
+      </div>
+      <div class="deadline-banner ok">✓ 2026-07-09</div>
+      <div class="card-body">
+        <div class="card-company">TW 職缺 — 偲倢科技 (live)</div>
+        <div class="card-role">AI Agent Lead (內湖)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 台北市內湖區</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/部署 AI Agent</li><li>LLM/RAG/API 整合</li><li>中英雙語</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題+中英母語。主打 23K 行 production AI agent 系統+客戶交付。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">production AI agent 實績</span><span class="chip strength">全端</span><span class="chip strength">客戶交付/顧問</span><span class="chip weakness">部分需通勤(非遠端者)</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>遠端優先(盛晶),在地當保底</li><li>作品集主打 agent 架構</li><li>只投本月更新的</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.104.com.tw/jobs/search/?keyword=AI%20agent&order=15&asc=0&mode=s" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
     <div class="opp-card medium" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill medium">medium</span>
@@ -2255,6 +2453,160 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Build one strong AI-agent portfolio profile</li><li>Reuse it across platforms</li><li>Only bid on gigs posted this month</li></ol></div>
       </div>
       <div class="card-actions"><a href="https://flexiple.com/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">1111 人力銀行</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — 1111 人力銀行</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Job Site)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.1111.com.tw/search/job?ks=AI%20agent" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">Meet.jobs</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — Meet.jobs</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Job Site)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://meet.jobs/zh-TW/jobs?keyword=AI+agent" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">PTT Soft_Job / Tech_Job</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — PTT Soft_Job / Tech_Job</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Community)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.ptt.cc/bbs/Soft_Job/index.html" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">Facebook 社團 (Front-End/AI 工程師/接案)</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — Facebook 社團 (Front-End/AI 工程師/接案)</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Community)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.facebook.com/search/groups/?q=AI%20agent" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">518 外包網 / 熊班</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — 518 外包網 / 熊班</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Outsource)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Contract / 接案</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://out.518.com.tw/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">Tasker 出任務</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — Tasker 出任務</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Outsource)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Contract / 接案</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.tasker.com.tw/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">PRO360 達人網</span>
+      </div>
+      <div class="deadline-banner ok">✓ 搜尋「AI agent」，只看本月發布 — 舊的丟掉</div>
+      <div class="card-body">
+        <div class="card-company">TW — PRO360 達人網</div>
+        <div class="card-role">AI Agent 職缺/接案 (TW Outsource)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Taiwan / Remote</span>
+          <span class="meta-chip">⏱ Contract / 接案</span>
+          <span class="meta-chip">💰 依案件 / 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>建置/整合/調校 AI agent</li><li>中英雙語溝通</li><li>LLM + 自動化</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>台灣在地無簽證問題 + 中英母語。主打「AI Agent Builder：23K 行 production 系統 + 客戶交付」。</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">台灣在地</span><span class="chip strength">中英雙語</span><span class="chip strength">production AI agent 實績</span><span class="chip weakness">部分平台需登入</span><span class="chip weakness">在地薪資可能低於海外遠端</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>一份強力 AI-agent 作品集重複投</li><li>只投本月案</li><li>海外遠端優先、台灣在地當保底</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.pro360.com.tw/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div></div>
   </div>
 
