@@ -407,19 +407,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 <!-- ══ STATS ════════════════════════════════════════════════════ -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-num">63</div>
+    <div class="stat-num">23</div>
     <div class="stat-label">Total Found</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num danger">13</div>
+    <div class="stat-num danger">0</div>
     <div class="stat-label">Critical</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num warn">42</div>
+    <div class="stat-num warn">20</div>
     <div class="stat-label">High Priority</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">8</div>
+    <div class="stat-num">3</div>
     <div class="stat-label">Medium</div>
   </div>
   <div class="stat-item">
@@ -481,7 +481,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 
   <!-- Filter Bar -->
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterCards('all', this)">All (63)</button>
+    <button class="filter-btn active" onclick="filterCards('all', this)">All (23)</button>
     <button class="filter-btn" onclick="filterCards('communication', this)">Communication</button>
     <button class="filter-btn" onclick="filterCards('cultural', this)">Cultural</button>
     <button class="filter-btn" onclick="filterCards('marketing', this)">Marketing</button>
@@ -497,315 +497,29 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   <div class="section" id="sec-critical">
     <div class="section-head">
       <h2>🔴 Critical Priority — Apply Now</h2>
-      <span class="section-badge danger">13</span>
+      <span class="section-badge danger">0</span>
     </div>
-    <div class="card-grid">
-    <div class="opp-card critical" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">LinkedIn (Taiwan Remote)</span>
-      </div>
-      <div class="deadline-banner ok">✓ Posted ~2026-07-12 (1 day ago) — Active</div>
-      <div class="card-body">
-        <div class="card-company">Cresta</div>
-        <div class="card-role">Senior Forward Deployed Engineer (AI Agent)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Taiwan eligible</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $120K–$180K USD (est.)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Deploy AI agents into enterprise customer environments</li><li>Tune LLM agent behavior for production</li><li>Work directly with clients on integration</li><li>Debug and iterate agent performance</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You built a 23K-line production AI agent system (80% auto-reply, 24/7) AND deployed AI-augmented consulting for a semiconductor client ($560K savings). Forward-deployed roles want exactly this build-plus-client hybrid.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent system (Kun-Jia)</span><span class="chip strength">Client-facing consulting (Anatek)</span><span class="chip strength">Claude API / LLM integration</span><span class="chip strength">Python + TypeScript</span><span class="chip weakness">May expect enterprise-scale deployment history</span><span class="chip weakness">"Senior" bar — emphasize depth not years</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Frame Kun-Jia as a forward-deployed engagement</li><li>Have a 2-min story on tuning agent behavior in production</li><li>Quantify uptime + auto-reply rate</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/senior-forward-deployed-engineer-ai-agent-at-cresta-4411487616" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active — posted 10 days ago</div>
-      <div class="card-body">
-        <div class="card-company">ContentJet Inc.</div>
-        <div class="card-role">AI Agent Architect / Builder</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Montreal-based, hires globally</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $80K–$140K USD (est.)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build AI agent systems</li><li>Agent architecture design</li><li>LLM integration</li><li>Production deployment</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You literally built an AI agent system from scratch at Kun-Jia (LINE webhook + Claude API, vehicle detection, rule-based interceptor, LLM guardrails). This IS what they're hiring for.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Built production AI agents</span><span class="chip strength">Claude API mastery</span><span class="chip strength">Full-stack deployment</span><span class="chip weakness">May want specific agent framework experience (LangChain, CrewAI)</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply NOW — this is your #1 match</li><li>Lead with Kun-Jia agent architecture in cover letter</li><li>Prepare to demo your LINE + Claude auto-reply system</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/contentjet-inc-ai-agent-architect-builder" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">ClickUp</div>
-        <div class="card-role">Staff AI Engineer — AI Product</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $150K–$200K+ USD (est. staff level)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Design AI features for ClickUp product</li><li>Staff-level architecture decisions</li><li>ML/LLM integration at scale</li><li>Cross-functional leadership</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You've built AI products end-to-end (not just models). Kun-Jia: 35+ modules, 1,694 tests, 81 deployments. That's staff-engineer-level shipping velocity.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">AI product builder</span><span class="chip strength">End-to-end shipping</span><span class="chip strength">Staff-level velocity</span><span class="chip weakness">Staff level typically wants 8+ years — frame your experience broadly</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Emphasize system design and architecture leadership</li><li>Prepare for system design interview focused on AI product features</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/clickup-staff-ai-engineer-ai-product" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">Strange Loop Labs</div>
-        <div class="card-role">Senior Software Engineer — AI Agent Platform</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $120K–$180K USD (est.)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Full AI stack ownership</li><li>Unstructured data processing</li><li>Customer-facing engineering</li><li>End-to-end product ownership</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You own everything end-to-end: frontend, backend, AI, deployment, customer relationship. Kun-Jia owner went from 3-4hrs/day → AI handles 80%. You built that.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">End-to-end ownership</span><span class="chip strength">Customer-facing builder</span><span class="chip strength">AI + full-stack</span><span class="chip weakness">May want specific unstructured data experience (document parsing, OCR)</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Emphasize your customer-impact metrics (80% auto-reply, 24/7 coverage)</li><li>Prepare to discuss your 8891.com.tw scraper as unstructured data processing</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/strange-loop-labs-senior-software-engineer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="leadership ai_automation consulting">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">Workable</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active — direct apply link</div>
-      <div class="card-body">
-        <div class="card-company">Human Intelligence</div>
-        <div class="card-role">Fractional CTO / AI Strategy Council</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Global (incl. Singapore, SE Asia)</span>
-          <span class="meta-chip">⏱ Contract (6-12 months, hourly)</span>
-          <span class="meta-chip">💰 $132K–$409K USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag leadership">leadership</span><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag consulting">consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>AI product strategy advisory</li><li>Design reviews and architecture guidance</li><li>Threat models and eval audits</li><li>High-leverage, concise guidance</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Dual track: AI system builder (Kun-Jia 23K lines) + strategic consultant (Anatek $560K savings). Few candidates have both technical depth AND business strategy.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">AI builder + business strategist</span><span class="chip strength">Cross-border (US/Taiwan/Singapore)</span><span class="chip strength">Production AI shipped</span><span class="chip weakness">Advisory roles can favor name-brand company alumni</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Click the apply link NOW — it goes directly to the application form</li><li>Prepare 2-page case study: Kun-Jia + Anatek</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://apply.workable.com/humanintelligence/j/449166EEAB/apply/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="leadership ai_automation consulting">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">Fractional Jobs</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">TaxMD</div>
-        <div class="card-role">Fractional CTO (AI Integration Focus)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Fractional / Part-time</span>
-          <span class="meta-chip">💰 $150–$300/hr</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag leadership">leadership</span><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag consulting">consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Review system architecture + microservices</li><li>Evaluate AI integration (LLM, RAG, embeddings)</li><li>Code quality review</li><li>DevOps pipeline assessment</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You built LLM integration with guardrails (Kun-Jia), microservices architecture (tRPC + Express), DevOps (Docker + Railway CI/CD, 81 deployments). You check every box.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">LLM/RAG experience</span><span class="chip strength">Microservices architecture</span><span class="chip strength">DevOps CI/CD</span><span class="chip strength">Full-stack review capability</span><span class="chip weakness">Tax domain is unfamiliar — but they need tech leadership, not tax expertise</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Request an introduction via the listing page</li><li>Prepare to discuss your LLM guardrails and architecture decisions at Kun-Jia</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.fractionaljobs.io/jobs/chief-technology-officer-at-taxmd" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation data_science engineering">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">Himalayas</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">MLabs</div>
-        <div class="card-role">Senior AI Data Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $130K–$150K USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Design agentic AI systems</li><li>LLM + financial data integration</li><li>Production infrastructure</li><li>Mid-to-senior level</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Agentic systems = your Kun-Jia project. LLM + data = your Claude API + MySQL integration. Financial data = your 3Peaks risk management + CAE semiconductor trading experience. Triple match.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Agentic systems builder</span><span class="chip strength">LLM production experience</span><span class="chip strength">Financial data background (3Peaks, CAE)</span><span class="chip weakness">May want deeper financial domain ML experience</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply directly at the Himalayas link</li><li>Emphasize your 3Peaks financial risk data experience combined with AI agent building</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://himalayas.app/companies/mlabs/jobs/ai-data-engineer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation engineering leadership">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active — posted on WWR AI section</div>
-      <div class="card-body">
-        <div class="card-company">Kogan.com</div>
-        <div class="card-role">AI Automation & Architecture Lead</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Worldwide</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $100,000+ USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span><span class="cat-tag leadership">leadership</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Lead AI automation architecture</li><li>Design scalable AI systems</li><li>Full-stack + AI integration</li><li>Architecture decisions</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You architected a 23K-line AI system from scratch at Kun-Jia. 35+ modules, Docker CI/CD, 81 deployments. You literally ARE an AI Automation Architecture Lead.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">AI architecture builder</span><span class="chip strength">Automation systems</span><span class="chip strength">Production deployment</span><span class="chip strength">Full-stack + AI</span><span class="chip weakness">Kogan.com is Australian — may prefer AU/NZ timezone. Taiwan is only 2-3 hours off AEST — workable.</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply immediately at the WWR link</li><li>Lead with Kun-Jia architecture: 35 modules, 1,694 tests, 81 CI/CD deployments</li><li>Mention AU-timezone compatibility (Taiwan = AEST-2hrs)</li><li>Prepare system architecture diagram of your Kun-Jia AI stack</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/kogan-com-ai-automation-architecture-lead" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="leadership engineering consulting">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">Fractional Jobs</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">FÔLD</div>
-        <div class="card-role">Fractional CTO</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Fractional — 10-20 hrs/week</span>
-          <span class="meta-chip">💰 $150–$300/hr (est. based on role)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag leadership">leadership</span><span class="cat-tag engineering">engineering</span><span class="cat-tag consulting">consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build unified platform connecting 5 SaaS products via APIs/middleware</li><li>React Native app development</li><li>Shape product priorities and technical architecture</li><li>AI coaching + live streaming expansion</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You integrated LINE API + Claude API + MySQL + 35 modules into one cohesive system at Kun-Jia. FÔLD needs the same: unify 5 platforms. You've done this. Bootstrapped = fast decisions, no corporate overhead.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">API/platform unification (Kun-Jia proof)</span><span class="chip strength">React + full-stack builder</span><span class="chip strength">Fractional CTO experience building from zero</span><span class="chip weakness">Fitness domain unfamiliar — but they need platform architecture, not fitness expertise</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at the FractionalJobs link</li><li>Lead with: 'I unified 5+ disparate APIs into a single operational system at Kun-Jia — same challenge as your 5-platform problem'</li><li>Prepare a 1-page API unification architecture proposal to stand out</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.fractionaljobs.io/jobs/chief-technology-officer-at-fold" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation engineering operations_consulting">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">Dynamite Jobs</span>
-      </div>
-      <div class="deadline-banner ok">✓ Apply within 7 days — early bird advantage</div>
-      <div class="card-body">
-        <div class="card-company">Workflex</div>
-        <div class="card-role">Applied AI Engineer (Internal Operations)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Global</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 Competitive (typical $90-140K range)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span><span class="cat-tag operations_consulting">operations_consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build internal AI automation tooling (the same archetype as Kun-Jia's 23K-line ops system)</li><li>Own end-to-end AI features from idea → production</li><li>Work with LLMs/agents for internal business process automation</li><li>Collaborate cross-functionally with non-technical teams</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Lead with Kun-Jia Autos case: 23,000-line AI ops system, 80% auto-reply coverage, 24/7 ops, LINE+Claude integration. Then Anatek: $560K savings via AI agents compressing a 3-month project into 2 weeks. You ARE their ideal hire — an AI engineer who has already built internal-ops automation at scale.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Kun-Jia 23K lines</span><span class="chip strength">Claude API</span><span class="chip strength">LINE Messaging API</span><span class="chip strength">AI Agents</span><span class="chip strength">Internal ops</span><span class="chip strength">Python</span><span class="chip strength">TypeScript</span><span class="chip weakness">US timezone expectations</span><span class="chip weakness">English-only code reviews</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Prepare a 5-min Loom walking through the Kun-Jia architecture (LINE webhook → Claude → Drizzle ORM → auto-reply)</li><li>Have a 1-page AI-ops design doc ready</li><li>Share your Anatek $560K savings as quantified ROI proof</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://dynamitejobs.com/company/workflex/remote-job/applied-ai-engineer-internal-operations" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation leadership engineering">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Apply this week — staff-level AI roles close fast</div>
-      <div class="card-body">
-        <div class="card-company">Webflow</div>
-        <div class="card-role">Lead AI Engineer — Enterprise AI Operations</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — US / Americas</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $180-260K USD base + equity</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag leadership">leadership</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Lead AI infrastructure + operations for Webflow's enterprise customers</li><li>Design LLM pipelines, evaluation frameworks, guardrails</li><li>Mentor other AI engineers; cross-functional leadership</li><li>Ship production AI features at scale (millions of users)</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You combine hands-on AI engineering (Kun-Jia: 23K-line production LLM ops system) with operational leadership (Anatek: $560K cross-border savings delivered in 2 weeks). That is exactly what "Lead AI Engineer — Enterprise AI Ops" means.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">AI Agents production</span><span class="chip strength">Claude API</span><span class="chip strength">Python</span><span class="chip strength">ML pipelines</span><span class="chip strength">Cross-functional leadership</span><span class="chip strength">Ops mindset</span><span class="chip weakness">Big-co scale</span><span class="chip weakness">Timezone (12hr offset to SF)</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Study Webflow AI features (AI Assistant, Page Builder AI) before interview</li><li>Prepare 90-day plan: 0-30 discovery, 30-60 POC, 60-90 ship v1</li><li>Quantify Kun-Jia's impact in Webflow-relevant metrics (tickets deflected, hours saved)</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/lead-ai-engineer-enterprise-ai-operations-webflow" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="leadership digital_marketing operations_consulting">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner warn">⚠️ Active — posted April 2026. Requires Loom video application.</div>
-      <div class="card-body">
-        <div class="card-company">Prepterminal.com</div>
-        <div class="card-role">Chief Operating Officer (COO) / Growth GM</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Worldwide</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $100,000–$200,000 USD OTE (Base + Aggressive Profit-Share)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag leadership">leadership</span><span class="cat-tag digital_marketing">digital_marketing</span><span class="cat-tag operations_consulting">operations_consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Manage P&L for EdTech assessment platform portfolio (Wonderlic, PrepTerminal)</li><li>Oversee direct-response sales funnels, media buying (Google/Meta), CRO, A/B testing</li><li>Drive AI integration across production processes and content creation</li><li>Manage WordPress/LMS environments and developer team</li><li>Systemize practice-test creation via AI agents and inbound video guides</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You are the rare hybrid this role demands: a growth marketer who ALSO ships AI. Farmz Asia: 400+ qualified leads/month via Google/Meta PPC. ROAS 25x on $660 ad spend at a music festival. ROAS 24x for pet show. And you built the AI automation layer (Kun-Jia: 80% auto-reply, 24/7 ops). Anatek: compressed 3-month project to 2 weeks via AI = $560K savings. Prepare a 2-3 min Loom video on how you scaled a specific digital marketing funnel.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Google Ads + Meta Pixel expertise (Farmz Asia Singapore)</span><span class="chip strength">Exceptional ROAS track record (25x, 24x proven)</span><span class="chip strength">AI integration builder (Kun-Jia 23K lines, Anatek $560K savings)</span><span class="chip strength">P&L management and founder experience (Vive-Viva La Vida)</span><span class="chip strength">Developer team management (Kun-Jia cross-functional delivery)</span><span class="chip weakness">COO title requires strong operational credibility at scale — frame consulting and founder experience as equivalent</span><span class="chip weakness">EdTech domain is new — but they need funnel growth + AI ops, not domain expertise</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Record a 2-3 min Loom: pick the Farmz Asia 400+ leads/month story OR the ROAS 25x music festival campaign</li><li>Walk through: the specific funnel → the exact levers you pulled (bid strategy, ad copy, landing page CRO) → the measurable result</li><li>Mention the AI automation layer: how you systemize content + ops with AI agents</li><li>Lead cover letter with: 'I scale marketing funnels AND build the AI infrastructure behind them — I've done both for real clients'</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/prepterminal-com-chief-operating-officer-coo-growth-gm" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card critical" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill critical">critical</span>
-        <span class="platform-pill">HN Who is Hiring (2026-07)</span>
-      </div>
-      
-      <div class="card-body">
-        <div class="card-company">We The Flywheel</div>
-        <div class="card-role">Agentic Engineer / Sr Agentic Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote worldwide, contract 10-40 hrs/wk</span>
-          <span class="meta-chip">⏱ Contract</span>
-          <span class="meta-chip">💰 未列</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        
-        
-        
-        
-      </div>
-      <div class="card-actions"><a href="https://news.ycombinator.com/item?id=48747990" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div></div>
+    <div class="card-grid"></div>
   </div>
 
   <!-- HIGH -->
   <div class="section" id="sec-high">
     <div class="section-head">
       <h2>🟡 High Priority</h2>
-      <span class="section-badge warn">42</span>
+      <span class="section-badge warn">20</span>
     </div>
     <div class="card-grid">
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">實抓</span>
+        <span class="platform-pill">DailyRemote Taiwan</span>
       </div>
-      <div class="deadline-banner ok">✓ 本月 Active</div>
+      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">GitLab</div>
-        <div class="card-role">Intermediate Fullstack Eng (Ruby/Vue), AI Custom Models</div>
+        <div class="card-company">dailyremote.com</div>
+        <div class="card-role">Binance Accelerator Program - Software Engineer (Backend + AI/LLM)</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 Remote</span>
+          <span class="meta-chip">📍 DailyRemote Taiwan</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
           <span class="meta-chip">💰 面議</span>
         </div>
@@ -815,19 +529,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://jobspresso.co/?post_type=job_listing&p=162946" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://dailyremote.com/remote-job/binance-accelerator-program-software-engineer-backend-ai-llm-5259457" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">實抓</span>
+        <span class="platform-pill">Working Nomads AI</span>
       </div>
-      <div class="deadline-banner ok">✓ 8 days ago Active</div>
+      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Intetics</div>
-        <div class="card-role">AI Engineer (3-month project)</div>
+        <div class="card-company">workingnomads.com</div>
+        <div class="card-role">Senior AI Engineer (LLM) Proxify</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 Morocco (remote)</span>
+          <span class="meta-chip">📍 Working Nomads AI</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
           <span class="meta-chip">💰 面議</span>
         </div>
@@ -837,19 +551,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://himalayas.app/companies/intetics/jobs/ai-engineer-3-month-project" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/senior-ai-engineer-llm-proxify-1705857" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">實抓</span>
+        <span class="platform-pill">Working Nomads AI</span>
       </div>
-      <div class="deadline-banner ok">✓ 27 days ago Active</div>
+      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Monterail</div>
-        <div class="card-role">LLM Engineer - Freelancer</div>
+        <div class="card-company">workingnomads.com</div>
+        <div class="card-role">Principal Engineer - AI Engineering/AI Software Engineering/Applied AI FICO</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 Poland (remote)</span>
+          <span class="meta-chip">📍 Working Nomads AI</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
           <span class="meta-chip">💰 面議</span>
         </div>
@@ -859,51 +573,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://himalayas.app/companies/monterail/jobs/llm-engineer-freelancer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">實抓</span>
-      </div>
-      <div class="deadline-banner ok">✓ 本月 Active</div>
-      <div class="card-body">
-        <div class="card-company">Khan Academy</div>
-        <div class="card-role">AI Engineer (12/18mo fixed-term)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://jobspresso.co/job/ai-engineer-12-months-18-months-fixed-term/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">實抓</span>
-      </div>
-      <div class="deadline-banner ok">✓ 2026-07-03 Active</div>
-      <div class="card-body">
-        <div class="card-company">Proxify</div>
-        <div class="card-role">Senior Python AI Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 CET ±3h (remote)</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/job/go/1705876/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/principal-engineer-ai-engineeringai-software-engineeringapplied-ai-fico" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
@@ -913,7 +583,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
       <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
         <div class="card-company">binance</div>
-        <div class="card-role">LLM Applied Data Scientist (RAG/ NLP)</div>
+        <div class="card-role">LLM Data Scientist/Algorithm Engineer (Fully Remote)</div>
         <div class="card-meta">
           <span class="meta-chip">📍 TW Remote</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
@@ -925,139 +595,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/llm-applied-data-scientist-rag-nlp-at-binance-4304580676" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn TW Remote</span>
-      </div>
-      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
-      <div class="card-body">
-        <div class="card-company">winbond</div>
-        <div class="card-role">(竹北) AI Agent Engineer_MK30</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 TW Remote</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/%E7%AB%B9%E5%8C%97-ai-agent-engineer-mk30-at-winbond-4421439518" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn TW Remote</span>
-      </div>
-      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
-      <div class="card-body">
-        <div class="card-company">binance</div>
-        <div class="card-role">Pioneer Talent Program - AI Agent Developer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 TW Remote</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/pioneer-talent-program-ai-agent-developer-at-binance-4404260214" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn TW Remote</span>
-      </div>
-      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
-      <div class="card-body">
-        <div class="card-company">trendai</div>
-        <div class="card-role">(Sr.) AI Engineer - Agentic AI</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 TW Remote</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/sr-ai-engineer-agentic-ai-at-trendai-4383495510" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn TW Remote</span>
-      </div>
-      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
-      <div class="card-body">
-        <div class="card-company">corning incorporated</div>
-        <div class="card-role">AI & LLM Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 TW Remote</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/ai-llm-engineer-at-corning-incorporated-4435981469" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn TW Remote</span>
-      </div>
-      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
-      <div class="card-body">
-        <div class="card-company">binance</div>
-        <div class="card-role">Pioneer Talent Program - AI Agent Engineer (Fully Remote)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 TW Remote</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/pioneer-talent-program-ai-agent-engineer-fully-remote-at-binance-4403980388" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn TW Remote</span>
-      </div>
-      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
-      <div class="card-body">
-        <div class="card-company">binance</div>
-        <div class="card-role">Binance Accelerator Program - Applied AI Agent Engineer (Fully Remote)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 TW Remote</span>
-          <span class="meta-chip">⏱ Full-time / Contract</span>
-          <span class="meta-chip">💰 面議</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        
-        
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
-        
-      </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/binance-accelerator-program-applied-ai-agent-engineer-fully-remote-at-binance-4403994160" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/llm-data-scientist-algorithm-engineer-fully-remote-at-binance-4304862406" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
@@ -1089,7 +627,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
       <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
         <div class="card-company">binance</div>
-        <div class="card-role">LLM Data Scientist/Algorithm Engineer (Fully Remote)</div>
+        <div class="card-role">Binance Accelerator Program - Applied AI Agent Engineer (Fully Remote)</div>
         <div class="card-meta">
           <span class="meta-chip">📍 TW Remote</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
@@ -1101,19 +639,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/llm-data-scientist-algorithm-engineer-fully-remote-at-binance-4304862406" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/binance-accelerator-program-applied-ai-agent-engineer-fully-remote-at-binance-4403994160" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads AI</span>
+        <span class="platform-pill">LinkedIn TW Remote</span>
       </div>
       <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">workingnomads.com</div>
-        <div class="card-role">Principal Engineer - AI Engineering/AI Software Engineering/Applied AI FICO</div>
+        <div class="card-company">binance</div>
+        <div class="card-role">Pioneer Talent Program - AI Agent Engineer (Fully Remote)</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 Working Nomads AI</span>
+          <span class="meta-chip">📍 TW Remote</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
           <span class="meta-chip">💰 面議</span>
         </div>
@@ -1123,19 +661,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/principal-engineer-ai-engineeringai-software-engineeringapplied-ai-fico" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/pioneer-talent-program-ai-agent-engineer-fully-remote-at-binance-4403980388" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads AI</span>
+        <span class="platform-pill">LinkedIn TW Remote</span>
       </div>
       <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">workingnomads.com</div>
-        <div class="card-role">Senior AI Engineer (LLM) Proxify</div>
+        <div class="card-company">corning incorporated</div>
+        <div class="card-role">AI & LLM Engineer</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 Working Nomads AI</span>
+          <span class="meta-chip">📍 TW Remote</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
           <span class="meta-chip">💰 面議</span>
         </div>
@@ -1145,19 +683,19 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/senior-ai-engineer-llm-proxify-1705857" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/ai-llm-engineer-at-corning-incorporated-4435981469" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">DailyRemote Taiwan</span>
+        <span class="platform-pill">LinkedIn TW Remote</span>
       </div>
       <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">dailyremote.com</div>
-        <div class="card-role">Binance Accelerator Program - Software Engineer (Backend + AI/LLM)</div>
+        <div class="card-company">mediatek</div>
+        <div class="card-role">Agentic AI engineer</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 DailyRemote Taiwan</span>
+          <span class="meta-chip">📍 TW Remote</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
           <span class="meta-chip">💰 面議</span>
         </div>
@@ -1166,577 +704,172 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
-      </div>
-      <div class="card-actions"><a href="https://dailyremote.com/remote-job/binance-accelerator-program-software-engineer-backend-ai-llm-5259457" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Lemon.io via RemoteOK</span>
-      </div>
-      <div class="deadline-banner ok">✓ Posted 2026-07-02 (this month) — Active</div>
-      <div class="card-body">
-        <div class="card-company">Lemon.io (live gig)</div>
-        <div class="card-role">Senior AI Engineer / Architect</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — LatAm / Europe / US</span>
-          <span class="meta-chip">⏱ Contract / Freelance</span>
-          <span class="meta-chip">💰 Hourly (Lemon.io rates)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Architect AI/LLM systems for clients</li><li>Senior IC delivery</li><li>Contract engagement</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Senior AI architect = your 23K-line production agent system. Lemon.io vets once, then routes you to client contracts.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent architecture</span><span class="chip strength">Full-stack</span><span class="chip strength">Client delivery</span><span class="chip weakness">Lemon.io vetting interview</span><span class="chip weakness">US/EU-hours overlap likely</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply to Lemon.io talent pool first</li><li>Lead with the agent system architecture</li><li>Have repo/demo ready</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://remoteok.com/remote-jobs/remote-senior-ai-engineer-architect-lemon-io-1134396" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn (Taiwan Remote)</span>
-      </div>
-      <div class="deadline-banner ok">✓ Posted ~2026-07-06 (1 week ago) — Active</div>
-      <div class="card-body">
-        <div class="card-company">MediaTek</div>
-        <div class="card-role">Agentic AI Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Taiwan-based</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 NT$1.5M–2.5M/yr (est.)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build agentic AI systems</li><li>LLM orchestration</li><li>Multi-agent workflows</li><li>Production ML pipelines</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Local Taiwan employer with no visa friction. Your agent-system build + ML pipeline (NBA draft model, 65% recall) shows both applied AI and production ML.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Agentic system experience</span><span class="chip strength">ML pipelines (scikit-learn, XGBoost)</span><span class="chip strength">Taiwan-based, bilingual</span><span class="chip weakness">Likely expects deep ML research background</span><span class="chip weakness">Big-co process may favor CS degrees</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Lead with agent architecture, not marketing background</li><li>Show the Kun-Jia system diagram</li><li>Brush up on multi-agent orchestration patterns</li></ol></div>
       </div>
       <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/agentic-ai-engineer-at-mediatek-4405140924" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">LinkedIn (Global Remote)</span>
+        <span class="platform-pill">LinkedIn TW Remote</span>
       </div>
-      <div class="deadline-banner fire">🔥 Posted ~2026-07-07 (6 days ago) — Active</div>
+      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Vertech</div>
-        <div class="card-role">AI Agent Developer</div>
+        <div class="card-company">cresta</div>
+        <div class="card-role">Senior Forward Deployed Engineer (AI Agent)</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $90K–$140K USD (est.)</span>
+          <span class="meta-chip">📍 TW Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
         </div>
         <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Develop AI agents</li><li>LLM integration</li><li>Automation workflows</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Job title literally matches what you built at Kun-Jia. Direct one-to-one mapping.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">AI Agent Developer = Kun-Jia role</span><span class="chip strength">Claude API</span><span class="chip strength">Automation</span><span class="chip weakness">Unknown company size/legitimacy — verify</span><span class="chip weakness">Comp undisclosed</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Verify company before deep investment</li><li>Lead cover letter with the agent system</li><li>Mirror their exact keywords</li></ol></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
       </div>
-      <div class="card-actions"><a href="https://www.linkedin.com/jobs/view/ai-agent-developer-at-vertech-4431445165" target="_blank" class="btn btn-primary danger">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/senior-forward-deployed-engineer-ai-agent-at-cresta-4411487616" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
-    <div class="opp-card high" data-category="leadership consulting">
+    <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">Fractional Jobs</span>
+        <span class="platform-pill">LinkedIn TW Remote</span>
       </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
+      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Homestream</div>
-        <div class="card-role">Fractional CTO</div>
+        <div class="card-company">trendai</div>
+        <div class="card-role">(Sr.) AI Engineer - Agentic AI</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Fractional / Part-time</span>
-          <span class="meta-chip">💰 $150–$300/hr</span>
+          <span class="meta-chip">📍 TW Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
         </div>
-        <div class="tag-row"><span class="cat-tag leadership">leadership</span><span class="cat-tag consulting">consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Technology leadership</li><li>Architecture decisions</li><li>Team mentoring</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Solo-built 23K-line production system. Led $560K savings engagement. You've been a de facto CTO — now formalize it.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Solo builder → CTO transition</span><span class="chip strength">Production system builder</span><span class="chip weakness">May want real estate domain knowledge</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Request introduction via the listing page</li></ol></div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
       </div>
-      <div class="card-actions"><a href="https://www.fractionaljobs.io/jobs/chief-technology-officer-at-homestream" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/sr-ai-engineer-agentic-ai-at-trendai-4383495510" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
-    <div class="opp-card high" data-category="ai_automation consulting data_science">
+    <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">Himalayas</span>
+        <span class="platform-pill">LinkedIn TW Remote</span>
       </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
+      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Cyera</div>
-        <div class="card-role">Technical Data and AI Evangelist</div>
+        <div class="card-company">binance</div>
+        <div class="card-role">Pioneer Talent Program - AI Agent Developer</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $120K–$170K USD (est.)</span>
+          <span class="meta-chip">📍 TW Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
         </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag consulting">consulting</span><span class="cat-tag data_science">data_science</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Technical demos and presentations</li><li>AI/data product evangelism</li><li>Customer-facing technical consulting</li><li>Content creation about AI/data</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>MBA + AI builder + marketing background (Nike, Farmz Asia) = you can explain technical AI concepts to business audiences AND build them. Evangelists with your depth are rare.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">MBA + technical builder</span><span class="chip strength">Marketing + engineering</span><span class="chip strength">Customer-facing experience</span><span class="chip weakness">Evangelist roles often require public speaking / conference experience</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at Himalayas link</li><li>Prepare a 5-minute demo video of your Kun-Jia AI system</li></ol></div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
       </div>
-      <div class="card-actions"><a href="https://himalayas.app/companies/cyera-com/jobs/technical-data-and-ai-evangelist" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/pioneer-talent-program-ai-agent-developer-at-binance-4404260214" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
-    <div class="opp-card high" data-category="ai_automation data_science">
+    <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">We Work Remotely</span>
+        <span class="platform-pill">LinkedIn TW Remote</span>
       </div>
-      <div class="deadline-banner ok">✓ Active listing — multiple positions</div>
+      <div class="deadline-banner ok">✓ 遠端 · 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Yobi</div>
-        <div class="card-role">ML Engineer — Applied/Product (Multiple Levels)</div>
+        <div class="card-company">winbond</div>
+        <div class="card-role">(竹北) AI Agent Engineer_MK30</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $100K–$160K USD (est.)</span>
+          <span class="meta-chip">📍 TW Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
         </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Applied ML for behavioral modeling</li><li>Product-focused ML engineering</li><li>Python + ML frameworks</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your behavioral scoring model at Kun-Jia (auto-classification + high-score alerts, 20-30% close rate improvement) is directly relevant to behavioral modeling.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Behavioral modeling experience</span><span class="chip strength">Applied ML (not research)</span><span class="chip strength">Product-focused</span><span class="chip weakness">May want deeper ML research background</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at WWR link</li><li>Emphasize Kun-Jia behavioral scoring model in application</li></ol></div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
       </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/yobi-machine-learning-engineer-applied-product-multiple-positions-levels" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://tw.linkedin.com/jobs/view/%E7%AB%B9%E5%8C%97-ai-agent-engineer-mk30-at-winbond-4421439518" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
-    <div class="opp-card high" data-category="ai_automation engineering">
+    <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">We Work Remotely</span>
+        <span class="platform-pill">實抓</span>
       </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
+      <div class="deadline-banner ok">✓ 14 days ago Active</div>
       <div class="card-body">
-        <div class="card-company">Growth Factory Ventures</div>
-        <div class="card-role">Applied AI Engineer</div>
+        <div class="card-company">Binance</div>
+        <div class="card-role">LLM Applied Data Scientist (RAG/NLP)</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $80K–$120K USD</span>
+          <span class="meta-chip">📍 Australia / Hong Kong (remote)</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
         </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>AI engineering across venture portfolio</li><li>Multiple early-stage projects</li><li>Python + AI/ML frameworks</li><li>4+ years experience</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You've done startup-scale AI building (Kun-Jia from zero). Venture studio = exactly your skill of shipping fast across multiple domains.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Startup builder mentality</span><span class="chip strength">Multi-domain experience</span><span class="chip strength">Fast shipping</span><span class="chip weakness">Venture studio pay may be equity-heavy</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at WWR link</li><li>Emphasize your ability to ship across multiple domains (autos, semiconductors, marketing)</li></ol></div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
       </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/growth-factory-ventures-applied-ai-engineer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://himalayas.app/companies/binance/jobs/llm-applied-data-scientist-rag-nlp" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
-    <div class="opp-card high" data-category="engineering consulting ai_automation">
+    <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">We Work Remotely</span>
+        <span class="platform-pill">實抓</span>
       </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
+      <div class="deadline-banner ok">✓ 2026-07-03 Active</div>
       <div class="card-body">
-        <div class="card-company">Arch Works</div>
-        <div class="card-role">Forward Deployed Engineer</div>
+        <div class="card-company">Proxify</div>
+        <div class="card-role">Senior Python AI Engineer</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $100K–$160K USD (est.)</span>
+          <span class="meta-chip">📍 CET ±3h (remote)</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
         </div>
-        <div class="tag-row"><span class="cat-tag engineering">engineering</span><span class="cat-tag consulting">consulting</span><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Client-facing technical engineering</li><li>AI application in real-world contexts</li><li>Technical but customer-close</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Anatek: client-facing, technical, shipped in 2 weeks. Kun-Jia: technical, client (owner) went from 3-4hrs/day to AI handles 80%. You ARE a forward deployed engineer.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Client-facing technical work</span><span class="chip strength">AI application experience</span><span class="chip strength">Fast delivery</span><span class="chip weakness">May want Palantir-style FDE background</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at WWR link</li><li>Frame your consulting work as 'forward deployed engineering'</li></ol></div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
       </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/arch-works-forward-deployed-engineer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://www.workingnomads.com/job/go/1705876/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
-    <div class="opp-card high" data-category="engineering ai_automation">
+    <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">We Work Remotely</span>
+        <span class="platform-pill">實抓</span>
       </div>
-      <div class="deadline-banner ok">✓ Active — open-ended contract</div>
-      <div class="card-body">
-        <div class="card-company">Stellar AI</div>
-        <div class="card-role">Senior Software Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Contract — project-based, flexible schedule</span>
-          <span class="meta-chip">💰 Project-based</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag engineering">engineering</span><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Project-based AI engineering</li><li>Flexible schedule</li><li>Senior-level architecture</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>No set schedule = perfect for stacking with fractional CTO gigs. You can deliver project-based work on your own timeline.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Independent worker</span><span class="chip strength">Project-based delivery proven (Anatek)</span><span class="chip strength">Flexible</span><span class="chip weakness">Project-based = variable income</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply as supplementary income alongside fractional CTO roles</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/stellar-ai-senior-software-engineer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="data_science engineering">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Himalayas</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">Hayden AI</div>
-        <div class="card-role">Senior Software Engineer — Data Platform</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $130K–$170K USD (est.)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag data_science">data_science</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Data platform architecture</li><li>Infrastructure engineering</li><li>AI company context</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>3Peaks: ETL across 3 APAC markets. Kun-Jia: 8891.com.tw scraper → MySQL → real-time display. You've built data platforms.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">ETL/data pipeline experience</span><span class="chip strength">Multi-market data ops</span><span class="chip strength">AI company context</span><span class="chip weakness">May want more years of pure data engineering</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at Himalayas link</li><li>Emphasize multi-market data architecture</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://himalayas.app/companies/hayden-ai/jobs/senior-software-engineer-data-platform" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation data_science">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">RemoteOK</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">Level AI</div>
-        <div class="card-role">ML Engineer — NLP</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 ~$95K USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>NLP model development</li><li>ML pipeline building</li><li>Python + NLP frameworks</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your rule-based interceptor + LLM guardrails at Kun-Jia = practical NLP work. You process and classify text in production daily.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Practical NLP via LLM work</span><span class="chip strength">Production ML pipeline</span><span class="chip weakness">May want formal NLP research (transformers, fine-tuning)</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Brush up on NLP fundamentals (tokenization, embeddings, transformers) before interview</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://remoteok.com/remote-jobs/112226-remote-machine-learning-engineer-nlp-level-ai" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active — posted 19 days ago on WWR AI section</div>
-      <div class="card-body">
-        <div class="card-company">Aktor AI</div>
-        <div class="card-role">(Senior) AI Solutions Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Athens, Greece (likely EMEA/Worldwide)</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $75,000–$99,999 USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>AI solution design and implementation</li><li>Customer-facing technical work</li><li>LLM/AI integration</li><li>Solutions architecture</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You built AI solutions for real clients (Kun-Jia: 80% auto-reply, $560K savings at Anatek). AI Solutions Engineer IS your profile. You sell AND build.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Client-facing AI implementation</span><span class="chip strength">Production AI builder</span><span class="chip strength">Business + technical hybrid</span><span class="chip weakness">May want EU timezone — check role requirements</span><span class="chip weakness">Lower comp band ($75-99K) vs. your target</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at WWR link</li><li>Frame as: 'I don't just design solutions, I build and deploy them'</li><li>Prepare 2 case studies: Kun-Jia + Anatek as AI solution delivery proof</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/aktor-ai-senior-ai-solutions-engineer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Built In</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">Deepgram</div>
-        <div class="card-role">Software Engineer — Voice Agents / AI (Restaurants)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote (SF-based company, remote-eligible)</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $160,000–$250,000 USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build backend for automated voice ordering platforms</li><li>Integrate ML models with restaurant POS/payment systems</li><li>Voice AI optimization for noisy environments</li><li>4+ years backend + cloud (AWS)</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your LINE bot handles 80% of customer conversations for a dealership — exact same use case as restaurant voice AI. You've solved the hard part: context management, escalation logic, business rule integration.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Conversational AI builder (production proven)</span><span class="chip strength">Business-domain AI integration</span><span class="chip strength">Backend + cloud experience</span><span class="chip weakness">May prefer US timezone. Verify global eligibility.</span><span class="chip weakness">Audio/voice-specific ML is new territory vs. text-based</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at Built In link</li><li>Frame Kun-Jia LINE bot as 'conversational AI for a physical business' — exact parallel to restaurant voice agents</li><li>Brush up on voice AI concepts (TTS, STT, noise robustness) before interview</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://builtin.com/job/software-engineer-voice-agents-ai-deepgram-restaurants/8603481" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="engineering ai_automation consulting">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active listing</div>
-      <div class="card-body">
-        <div class="card-company">DevRev</div>
-        <div class="card-role">Forward Deployed Engineer — Applied AI</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Japan (APAC Remote — Taiwan-adjacent)</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 Competitive (not specified)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag engineering">engineering</span><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag consulting">consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Design/build AI agents and automations connecting DevRev to customer tech stacks</li><li>Build knowledge graphs integrating APIs and webhooks</li><li>Prompt engineering + GenAI for agent performance</li><li>SQL dashboards and data analysis</li><li>30% travel for on-site implementations</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your Anatek engagement: compressed 3-month US market entry into 2 weeks using AI agents. That IS forward deployed engineering. You build integrations (LINE + Claude + CRM at Kun-Jia), use prompt engineering in production, and deliver fast.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Client-facing technical delivery</span><span class="chip strength">AI agent + API integration builder</span><span class="chip strength">TypeScript/Python/JavaScript (all three listed)</span><span class="chip strength">APAC timezone (Japan = Taiwan compatible)</span><span class="chip weakness">30% travel may be challenging from Kaohsiung to Japan</span><span class="chip weakness">Large enterprise client context differs from SMB</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at Working Nomads link</li><li>Frame Anatek as 'forward deployed AI consulting' — same concept</li><li>Prepare your Kun-Jia API integration portfolio (LINE API + Claude API + webhooks)</li><li>Note willingness to travel within APAC in cover letter</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/forward-deployed-engineer-applied-ai-devrev" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation data_science engineering">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Rolling — apply ASAP</div>
-      <div class="card-body">
-        <div class="card-company">Elicit</div>
-        <div class="card-role">AI Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — Global</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $150-220K USD + equity</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build LLM-powered research pipelines</li><li>Prompt engineering + eval systems at production quality</li><li>Python-heavy stack; RAG, agentic search</li><li>Care deeply about AI safety and reasoning quality</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your NBA draft ML project (Gradient Boosting, 65% recall) proves research-quality models. Kun-Jia proves production LLM systems. Elicit needs both.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Claude API</span><span class="chip strength">Prompt Engineering</span><span class="chip strength">Python</span><span class="chip strength">scikit-learn</span><span class="chip strength">RAG-capable</span><span class="chip strength">Research mindset</span><span class="chip weakness">SF timezone preference</span><span class="chip weakness">High hiring bar</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Read 3 Elicit blog posts; reference them in cover letter</li><li>Build a tiny RAG demo on your own research corpus — share repo</li><li>Be ready for live coding with Python + LLM APIs</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/ai-engineer-elicit-1542423" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation engineering data_science">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Rolling</div>
-      <div class="card-body">
-        <div class="card-company">Grafana Labs</div>
-        <div class="card-role">Senior AI Engineer — Grafana Ops, AI/ML</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — EMEA / Americas</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $160-220K USD + equity</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span><span class="cat-tag data_science">data_science</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Apply ML/LLMs to observability data (logs, metrics, traces)</li><li>Build AI features that help SREs debug faster</li><li>Python + Go stack; Kubernetes-native</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your data-engineering work at 3Peaks (risk management across 3 APAC markets) is the dataset-heavy experience Grafana wants. Add Claude API + AI agents = strong fit.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Data Engineering</span><span class="chip strength">Python</span><span class="chip strength">PostgreSQL</span><span class="chip strength">Docker</span><span class="chip strength">AI/ML</span><span class="chip strength">APAC multi-region</span><span class="chip weakness">No Go experience (may need to learn)</span><span class="chip weakness">Kubernetes less familiar</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Read Grafana's "AI in observability" blog series</li><li>Spin up a local Grafana + LLM log-analysis demo</li><li>Ramp up on Go basics before interview</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/senior-ai-engineer-grafana-ops-aiml-grafana-labs-153491" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation engineering operations_consulting">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Rolling</div>
+      <div class="deadline-banner ok">✓ 2026-07-03 Active</div>
       <div class="card-body">
         <div class="card-company">Proxify</div>
         <div class="card-role">Senior AI Engineer (LLM)</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 Remote — EU-friendly timezone</span>
-          <span class="meta-chip">⏱ Full-time / Contract (EU client placements)</span>
-          <span class="meta-chip">💰 $70-120K USD (contract rate $60-100/hr)</span>
+          <span class="meta-chip">📍 CET ±3h (remote)</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
         </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span><span class="cat-tag operations_consulting">operations_consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Work on LLM integrations for various EU startup clients</li><li>Python + Node.js fluency; API design</li><li>RAG, agents, fine-tuning exposure</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Taiwan-based consultant with proven $560K-savings case (Anatek) and shipped LLM product (Kun-Jia). Proxify clients want exactly this profile — they pay for outcomes, not timezones.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Claude API</span><span class="chip strength">LLM Integration</span><span class="chip strength">Python</span><span class="chip strength">TypeScript</span><span class="chip strength">Node.js</span><span class="chip strength">Independent consultant</span><span class="chip weakness">EU timezone preferred</span><span class="chip weakness">Multi-stage interview process</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Create a strong Proxify profile — they screen by CV first</li><li>Have 2-3 LLM project case studies ready</li><li>Expect a live coding test + client interview</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/senior-ai-engineer-llm-proxify" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="data_science business_intelligence">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Rolling</div>
-      <div class="card-body">
-        <div class="card-company">CloudWalk</div>
-        <div class="card-role">Data Scientist (Risk)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — Global</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $100-160K USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag data_science">data_science</span><span class="cat-tag business_intelligence">business_intelligence</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build risk models for CloudWalk (Brazilian fintech unicorn)</li><li>XGBoost / scikit-learn / SHAP for interpretability</li><li>SQL-heavy; product-oriented data work</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>3Peaks Tech (2024-25): risk-management data engineering across 3 APAC markets. You already know the domain. NBA ML pipeline (65.16% recall with Gradient Boosting) proves the modeling chops.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Risk data engineering (3Peaks)</span><span class="chip strength">XGBoost</span><span class="chip strength">SHAP</span><span class="chip strength">Pandas</span><span class="chip strength">scikit-learn</span><span class="chip strength">SQL</span><span class="chip strength">APAC multi-market</span><span class="chip weakness">Portuguese not spoken (BR-based but English workable)</span><span class="chip weakness">Fintech regulatory learning curve</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Pull the NBA ML case study into a clean GitHub repo with README</li><li>Refresh on PD/LGD/EAD credit-risk basics</li><li>Prepare a risk-scoring toy project using SHAP</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/data-scientist-risk-cloudwalk" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="data_science product_strategy">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Rolling — hot AI company, competitive</div>
-      <div class="card-body">
-        <div class="card-company">ElevenLabs</div>
-        <div class="card-role">Data Scientist — Product</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — Global</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $140-220K USD + equity</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag data_science">data_science</span><span class="cat-tag product_strategy">product_strategy</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Analyze product usage, retention, growth loops</li><li>Build dashboards + causal experiments</li><li>SQL + Python; comfort with product analytics stack</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Cross-vertical profile (data + marketing + product) is rare. SUM Used Cars (data analyst + marketing) + Farmz Asia (400+ leads/month growth) + Kun-Jia (full product ownership) = perfect product DS.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">SQL</span><span class="chip strength">Python</span><span class="chip strength">Tableau</span><span class="chip strength">GA4</span><span class="chip strength">Product analytics</span><span class="chip strength">Growth</span><span class="chip weakness">High bar</span><span class="chip weakness">US hours likely preferred</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Build a product analytics case study using public ElevenLabs usage data</li><li>Know retention curves, cohort analysis, activation funnels</li><li>Have a strong growth-loop hypothesis for ElevenLabs</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/data-scientist-product-elevenlabs-1485485" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="digital_marketing operations_consulting">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Rolling</div>
-      <div class="card-body">
-        <div class="card-company">Coreli</div>
-        <div class="card-role">Fractional Growth Marketer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — Global</span>
-          <span class="meta-chip">⏱ Fractional (10-20 hrs/week)</span>
-          <span class="meta-chip">💰 $100-180/hr</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag digital_marketing">digital_marketing</span><span class="cat-tag operations_consulting">operations_consulting</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Own growth marketing for a SaaS/AI startup</li><li>Paid (Google/Meta) + SEO + email + content</li><li>Comfortable shipping without a full team</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Farmz Asia SG: 400+ qualified leads/month via PPC. Music festival ROAS 25x on $660 ad spend. Pet show ROAS 24x. You are a full-stack growth marketer who also builds AI-ops infra — a rare combo that justifies premium fractional rates.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Google Ads</span><span class="chip strength">Meta Pixel</span><span class="chip strength">GA4</span><span class="chip strength">SEO</span><span class="chip strength">PPC</span><span class="chip strength">Content Strategy</span><span class="chip strength">Growth Marketing</span><span class="chip weakness">No in-house team reliance — you do everything</span><span class="chip weakness">Short engagements may need pipeline</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Package Farmz Asia + ROAS wins into a 1-page case deck</li><li>Propose a 2-week "growth audit" as on-ramp</li><li>Set rate at $150/hr; anchor high</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/fractional-growth-marketer-coreli" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation engineering data_science">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active — rolling. Apply once, get matched to multiple projects.</div>
-      <div class="card-body">
-        <div class="card-company">Lemon.io</div>
-        <div class="card-role">Senior AI Engineer / Data Annotator</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Worldwide</span>
-          <span class="meta-chip">⏱ Contract / Project-based (marketplace — they match you to client projects)</span>
-          <span class="meta-chip">💰 $80–$150/hr (typical Lemon.io senior placement rate)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span><span class="cat-tag data_science">data_science</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>AI agent development for startup clients across various domains</li><li>LLM integration (LangChain, OpenAI API, Claude API)</li><li>Create AI systems from scratch with full architectural ownership</li><li>Strong English communication for client calls</li><li>Async-first remote collaboration with minimal timezone constraints</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You clear every hard requirement: Python in daily production (Kun-Jia), 2+ years AI agent development (LINE webhook + Claude + 35 modules, 1,694 tests), LLM integration in production (guardrails, context management, escalation logic). Lemon.io's clients are startups who need builders who ship — that is exactly your profile.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">3+ years Python in production (Kun-Jia)</span><span class="chip strength">2+ years AI agent development (qualifies directly)</span><span class="chip strength">Claude API + LLM production deployment</span><span class="chip strength">Full-stack architectural ownership</span><span class="chip strength">Clear, professional English for client calls</span><span class="chip weakness">LangChain specifically: you use custom Claude API loops, not LangChain. Mention transferable patterns.</span><span class="chip weakness">Marketplace model means variable project flow — not guaranteed income. Use as supplementary pipeline.</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply at the WWR link — expect Lemon.io to run a technical screen</li><li>Demo: walk through your Kun-Jia agent architecture (LINE → Claude → Drizzle ORM → auto-reply) as primary portfolio</li><li>Skim LangChain docs for 2 hours — enough to discuss chains, memory, and agents conceptually</li><li>Emphasize async/minimal-overlap availability — Taiwan timezone works well for US/EU async</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/lemon-io-senior-ai-engineer-data-annotator" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="data_science business_intelligence">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">AIJobs.net</span>
-      </div>
-      <div class="deadline-banner warn">⚠️ Active — listed April 2026</div>
-      <div class="card-body">
-        <div class="card-company">Ventura Travel</div>
-        <div class="card-role">Data Analytics Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Worldwide</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $110,000–$175,000 USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag data_science">data_science</span><span class="cat-tag business_intelligence">business_intelligence</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build and maintain data integration pipelines from multiple sources and APIs</li><li>Design and maintain dashboards and visualizations for marketing and stakeholders</li><li>Support web presence and acquisition analytics</li><li>Collaborate with marketing and other teams on data-driven decisions</li><li>Ensure data accuracy through validation and documentation</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You have the full stack: GA4 expertise from Farmz Asia Singapore (ran PPC with data-driven attribution), SQL across MySQL/PostgreSQL/MSSQL, Tableau + Power BI dashboarding (SUM Used Cars + 3Peaks), and real marketing pipeline experience (400+ leads/month data-backed). BigQuery is the one gap — quick ramp, same SQL skills apply.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">GA4 and Google Analytics expertise (Farmz Asia)</span><span class="chip strength">SQL across multiple dialects (MySQL, PostgreSQL, MSSQL)</span><span class="chip strength">Tableau + Power BI dashboard building</span><span class="chip strength">Marketing data pipeline experience (3Peaks ETL, Kun-Jia scraper → MySQL)</span><span class="chip strength">Cross-functional analytics mindset (data → marketing decisions)</span><span class="chip weakness">BigQuery is GCP-specific — you have strong SQL but GCP-flavored syntax is new. 1-day ramp.</span><span class="chip weakness">Looker Studio: adjacent to Tableau but different product. 1-2 hours to get comfortable.</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Spin up a free BigQuery sandbox and run 2-3 queries on a public dataset to confirm comfort</li><li>Review Looker Studio basics (30-60 min) — drag-and-drop with BigQuery backend, similar to Tableau</li><li>Prepare a GA4 + pipeline case study from your Farmz Asia acquisition analytics work</li><li>Frame cross-functional angle: you turned data into decisions that generated 400+ qualified leads/month</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://aijobs.net/job/data-analytics-engineer-remote-remote-89480/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation data_science engineering">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">FractionalJobs.io</span>
-      </div>
-      <div class="deadline-banner fire">🔥 FRESH — posted April 18, 2026. Apply this week.</div>
-      <div class="card-body">
-        <div class="card-company">ESL Edtech AI Startup (anonymous)</div>
-        <div class="card-role">Fractional ML Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — UK/EU/Asia PREFERRED</span>
-          <span class="meta-chip">⏱ Fractional — 20 hrs/week</span>
-          <span class="meta-chip">💰 $80–$160/hr</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag data_science">data_science</span><span class="cat-tag engineering">engineering</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Develop and refine ML models with emphasis on large language models</li><li>Design and implement effective prompting techniques</li><li>Analyze datasets to extract insights for product development</li><li>Design classroom experiments testing AI tool effectiveness</li><li>Collaborate with engineering and product teams</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Direct tech stack match: they use Claude on AWS Bedrock — you have deep Claude API experience from Kun-Jia production system (23K lines, guardrails, context management, escalation logic). Python + LLM + prompt engineering: all daily tools. MBA gives you the education-domain credibility to bridge technical and pedagogical conversations. And your Asia timezone is explicitly what they want.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Claude API — EXACT stack match (they use Claude on Bedrock)</span><span class="chip strength">Python + LLM production deployment (2+ years)</span><span class="chip strength">Prompt engineering expertise (daily at Kun-Jia)</span><span class="chip strength">Asia timezone PREFERRED — rare competitive advantage</span><span class="chip strength">MBA context for EdTech/learning product discussions</span><span class="chip weakness">AWS Bedrock-specific: you use Railway + Oracle Cloud, not AWS. Quick ramp needed on Bedrock API.</span><span class="chip weakness">LangChain: you use custom Claude loops, not LangChain. Conceptually equivalent; mention transferability.</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>APPLY THIS WEEK — freshly posted April 18, early applicants have major advantage</li><li>Lead with: Taiwan timezone = Asia preferred = perfect fit. State this explicitly.</li><li>Mention Claude API production experience by name (their exact tool choice)</li><li>Spend 2 hours on AWS Bedrock docs and run a basic Claude API call via Bedrock — shows initiative</li><li>Prepare a 1-page prompt engineering case study from Kun-Jia (rule-based interceptor + LLM guardrails)</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.fractionaljobs.io/jobs/senior-ml-ai-engineer-at-an-ai-ed-tech-startup" target="_blank" class="btn btn-primary danger">Apply / View →</a></div>
-    </div>
-    <div class="opp-card high" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill high">high</span>
-        <span class="platform-pill">HN Who is Hiring (2026-07)</span>
-      </div>
-      
-      <div class="card-body">
-        <div class="card-company">Railway</div>
-        <div class="card-role">Product Engineer (agentic computing/infra)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote worldwide</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 未列</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
         
         
-        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://news.ycombinator.com/item?id=48754441" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://www.workingnomads.com/job/go/1705857/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
-    <div class="opp-card high" data-category="ai_automation engineering">
+    <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
-        <span class="platform-pill">HN Who is Hiring (2026-07)</span>
-      </div>
-      
-      <div class="card-body">
-        <div class="card-company">Tether</div>
-        <div class="card-role">AI Inference Engineer (QVAC) / AI Research Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% remote worldwide（明示）</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 未列</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        
-        
-        
-        
-      </div>
-      <div class="card-actions"><a href="https://news.ycombinator.com/item?id=48794643" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div></div>
-  </div>
-
-  <!-- MEDIUM -->
-  <div class="section" id="sec-medium">
-    <div class="section-head">
-      <h2>🟢 Medium Priority</h2>
-      <span class="section-badge success">8</span>
-    </div>
-    <div class="card-grid">
-    <div class="opp-card medium" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill medium">medium</span>
-        <span class="platform-pill">實抓 VA</span>
+        <span class="platform-pill">實抓</span>
       </div>
       <div class="deadline-banner ok">✓ 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Girls Who Code</div>
-        <div class="card-role">Virtual Teaching Assistant</div>
+        <div class="card-company">Khan Academy</div>
+        <div class="card-role">AI Engineer (12/18mo fixed-term)</div>
         <div class="card-meta">
           <span class="meta-chip">📍 Remote</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
@@ -1748,7 +881,104 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://jobspresso.co/job/virtual-teaching-assistant/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://jobspresso.co/job/ai-engineer-12-months-18-months-fixed-term/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">實抓</span>
+      </div>
+      <div class="deadline-banner ok">✓ 27 days ago Active</div>
+      <div class="card-body">
+        <div class="card-company">Monterail</div>
+        <div class="card-role">LLM Engineer - Freelancer</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Poland (remote)</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
+      </div>
+      <div class="card-actions"><a href="https://himalayas.app/companies/monterail/jobs/llm-engineer-freelancer" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">實抓</span>
+      </div>
+      <div class="deadline-banner ok">✓ 8 days ago Active</div>
+      <div class="card-body">
+        <div class="card-company">Intetics</div>
+        <div class="card-role">AI Engineer (3-month project)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Morocco (remote)</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
+      </div>
+      <div class="card-actions"><a href="https://himalayas.app/companies/intetics/jobs/ai-engineer-3-month-project" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">實抓</span>
+      </div>
+      <div class="deadline-banner ok">✓ 本月 Active</div>
+      <div class="card-body">
+        <div class="card-company">GitLab</div>
+        <div class="card-role">Intermediate Fullstack Eng (Ruby/Vue), AI Custom Models</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Remote</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
+      </div>
+      <div class="card-actions"><a href="https://jobspresso.co/?post_type=job_listing&p=162946" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div></div>
+  </div>
+
+  <!-- MEDIUM -->
+  <div class="section" id="sec-medium">
+    <div class="section-head">
+      <h2>🟢 Medium Priority</h2>
+      <span class="section-badge success">3</span>
+    </div>
+    <div class="card-grid">
+    <div class="opp-card medium" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill medium">medium</span>
+        <span class="platform-pill">實抓 VA</span>
+      </div>
+      <div class="deadline-banner ok">✓ 20 days ago Active</div>
+      <div class="card-body">
+        <div class="card-company">Jouster</div>
+        <div class="card-role">Executive Assistant to CEO</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 Multiple (AU, CA +7)</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 面議</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        
+        
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
+        
+      </div>
+      <div class="card-actions"><a href="https://himalayas.app/companies/jouster/jobs/executive-assistant-to-ceo" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div>
     <div class="opp-card medium" data-category="ai_automation">
       <div class="card-top">
@@ -1777,12 +1007,12 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <span class="priority-pill medium">medium</span>
         <span class="platform-pill">實抓 VA</span>
       </div>
-      <div class="deadline-banner ok">✓ 20 days ago Active</div>
+      <div class="deadline-banner ok">✓ 本月 Active</div>
       <div class="card-body">
-        <div class="card-company">Jouster</div>
-        <div class="card-role">Executive Assistant to CEO</div>
+        <div class="card-company">Girls Who Code</div>
+        <div class="card-role">Virtual Teaching Assistant</div>
         <div class="card-meta">
-          <span class="meta-chip">📍 Multiple (AU, CA +7)</span>
+          <span class="meta-chip">📍 Remote</span>
           <span class="meta-chip">⏱ Full-time / Contract</span>
           <span class="meta-chip">💰 面議</span>
         </div>
@@ -1792,117 +1022,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
         <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent 實績</span><span class="chip strength">中英雙語</span><span class="chip strength">遠端</span></div></div>
         
       </div>
-      <div class="card-actions"><a href="https://himalayas.app/companies/jouster/jobs/executive-assistant-to-ceo" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card medium" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill medium">medium</span>
-        <span class="platform-pill">LinkedIn (Singapore / Remote)</span>
-      </div>
-      <div class="deadline-banner ok">✓ Posted ~2026-07-06 (1 week ago) — Active</div>
-      <div class="card-body">
-        <div class="card-company">Miao AI</div>
-        <div class="card-role">Software Engineer, AI Agents</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — APAC friendly</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 SGD competitive</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build AI agent products</li><li>LLM engineering</li><li>Product-focused shipping</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>APAC timezone aligns with your GMT+8. AI-native startup values builders.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">APAC timezone match</span><span class="chip strength">AI agent product builds</span><span class="chip strength">Bilingual EN/中文</span><span class="chip weakness">May require SG presence — verify</span><span class="chip weakness">Early-stage risk</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Confirm Taiwan-remote eligibility first</li><li>Highlight bilingual advantage for SG market</li><li>Show product sense</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://sg.linkedin.com/jobs/view/software-engineer-ai-agents-at-miao-ai-4422900575" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card medium" data-category="ai_automation">
-      <div class="card-top">
-        <span class="priority-pill medium">medium</span>
-        <span class="platform-pill">We Work Remotely</span>
-      </div>
-      <div class="deadline-banner ok">✓ Active — will train</div>
-      <div class="card-body">
-        <div class="card-company">DataAnnotation</div>
-        <div class="card-role">Remote AI Prompt Engineering & Evaluation</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 100% Remote — Worldwide</span>
-          <span class="meta-chip">⏱ FT/PT Flexible</span>
-          <span class="meta-chip">💰 $30K–$80K USD (flexible hours)</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Prompt engineering and evaluation</li><li>AI model output assessment</li><li>Flexible FT/PT schedule</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Your daily Claude API prompt engineering at Kun-Jia means you're overqualified — but it's easy money while hunting for bigger roles.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Overqualified — easy acceptance</span><span class="chip strength">Flexible schedule</span><span class="chip weakness">Lower pay — use as supplement only</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Apply as side income while pursuing staff/senior roles</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://weworkremotely.com/remote-jobs/dataannotation-tech-ft-pt-remote-ai-prompt-engineering-evaluation-will-train" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card medium" data-category="data_science ai_automation">
-      <div class="card-top">
-        <span class="priority-pill medium">medium</span>
-        <span class="platform-pill">Working Nomads</span>
-      </div>
-      <div class="deadline-banner ok">✓ Rolling</div>
-      <div class="card-body">
-        <div class="card-company">Airtm</div>
-        <div class="card-role">AI Data Scientist</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote — Global</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $80-140K USD</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag data_science">data_science</span><span class="cat-tag ai_automation">ai_automation</span></div>
-        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Fraud + risk + LLM features</li><li>Python + SQL + cloud ML</li><li>Cross-functional with product + eng</li></ul></div>
-        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>3Peaks risk-management DS + Kun-Jia AI production = exactly what Airtm needs: a data scientist who can ship both risk models and LLM features.</p></div>
-        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Risk data</span><span class="chip strength">Python</span><span class="chip strength">SQL</span><span class="chip strength">AI/LLM</span><span class="chip strength">Fintech-adjacent</span><span class="chip weakness">Spanish-adjacent company</span><span class="chip weakness">Timezone (LatAm hours)</span></div></div>
-        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Learn basic fraud-detection metrics (precision@k, recall@k)</li><li>Prepare a fintech-flavored version of your 3Peaks + NBA case study</li></ol></div>
-      </div>
-      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/ai-data-scientist-airtm" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card medium" data-category="engineering">
-      <div class="card-top">
-        <span class="priority-pill medium">medium</span>
-        <span class="platform-pill">HN Who is Hiring (2026-07)</span>
-      </div>
-      
-      <div class="card-body">
-        <div class="card-company">ProxyBase</div>
-        <div class="card-role">Rust Backend / Full-Stack (AI agent proxy infra)</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote (Global)</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 $100k-$160k + equity</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag engineering">engineering</span></div>
-        
-        
-        
-        
-      </div>
-      <div class="card-actions"><a href="https://news.ycombinator.com/item?id=48756786" target="_blank" class="btn btn-primary">Apply / View →</a></div>
-    </div>
-    <div class="opp-card medium" data-category="ai_automation engineering">
-      <div class="card-top">
-        <span class="priority-pill medium">medium</span>
-        <span class="platform-pill">HN Who is Hiring (2026-07)</span>
-      </div>
-      
-      <div class="card-body">
-        <div class="card-company">Matcha</div>
-        <div class="card-role">Founding Full-stack / AI Engineer</div>
-        <div class="card-meta">
-          <span class="meta-chip">📍 Remote US/Canada/Europe/UK/LATAM（未明列亞洲）</span>
-          <span class="meta-chip">⏱ Full-time</span>
-          <span class="meta-chip">💰 未列</span>
-        </div>
-        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span><span class="cat-tag engineering">engineering</span></div>
-        
-        
-        
-        
-      </div>
-      <div class="card-actions"><a href="https://news.ycombinator.com/item?id=48757845" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+      <div class="card-actions"><a href="https://jobspresso.co/job/virtual-teaching-assistant/" target="_blank" class="btn btn-primary">Apply / View →</a></div>
     </div></div>
   </div>
 
