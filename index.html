@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jerry's Remote Job Dashboard — 2026-07-14</title>
+<title>Jerry's Remote Job Dashboard — 2026-07-20</title>
 <style>
 /* ─── Design Tokens ──────────────────────────────────────────── */
 :root {
@@ -221,6 +221,43 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 .section-badge.success { background: var(--c-success); }
 .section-badge.neutral { background: var(--c-text-2); }
 
+/* ─── Company Career Pages ───────────────────────────────────── */
+.career-tip {
+  font-size: 13px; color: var(--c-text-2);
+  background: var(--c-primary-lt, rgba(37,99,235,.08));
+  border: 1px solid var(--c-border);
+  border-radius: 10px; padding: 10px 14px; margin-bottom: 20px;
+}
+.career-group { margin-bottom: 22px; }
+.career-group-head {
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px; color: var(--c-text-2); margin-bottom: 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.career-count {
+  background: var(--c-border); color: var(--c-text-2);
+  border-radius: var(--radius-pill); padding: 1px 8px; font-size: 11px;
+}
+.career-chip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+}
+.career-chip {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 10px 12px; border-radius: 10px;
+  border: 1px solid var(--c-border); background: var(--c-card, #fff);
+  text-decoration: none; transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+.career-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+  border-color: var(--c-primary);
+}
+.career-chip.hot { border-color: #f59e0b; background: rgba(245,158,11,.06); }
+.career-chip .cc-name { font-size: 14px; font-weight: 700; color: var(--c-text); }
+.career-chip .cc-note { font-size: 11.5px; line-height: 1.35; color: var(--c-text-2); }
+
 /* ─── Card Grid ──────────────────────────────────────────────── */
 .card-grid {
   display: grid;
@@ -397,8 +434,8 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
     <h1>Jerry's Remote Job Dashboard</h1>
     <p>100% Remote &nbsp;·&nbsp; AI / Data / Engineering / Marketing / Consulting &nbsp;·&nbsp; Global + Taiwan</p>
     <div class="header-badges">
-      <span class="header-badge"><span class="dot"></span> Updated 2026-07-14</span>
-      <span class="header-badge">Next scan 2026-07-21</span>
+      <span class="header-badge"><span class="dot"></span> Updated 2026-07-20</span>
+      <span class="header-badge">Next scan 2026-07-27</span>
       <span class="header-badge">40+ platforms scanned</span>
     </div>
   </div>
@@ -407,7 +444,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 <!-- ══ STATS ════════════════════════════════════════════════════ -->
 <div class="stats-bar">
   <div class="stat-item">
-    <div class="stat-num">21</div>
+    <div class="stat-num">24</div>
     <div class="stat-label">Total Found</div>
   </div>
   <div class="stat-item">
@@ -415,7 +452,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
     <div class="stat-label">Critical</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num warn">18</div>
+    <div class="stat-num warn">21</div>
     <div class="stat-label">High Priority</div>
   </div>
   <div class="stat-item">
@@ -481,7 +518,7 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
 
   <!-- Filter Bar -->
   <div class="filter-bar">
-    <button class="filter-btn active" onclick="filterCards('all', this)">All (21)</button>
+    <button class="filter-btn active" onclick="filterCards('all', this)">All (24)</button>
     <button class="filter-btn" onclick="filterCards('communication', this)">Communication</button>
     <button class="filter-btn" onclick="filterCards('cultural', this)">Cultural</button>
     <button class="filter-btn" onclick="filterCards('marketing', this)">Marketing</button>
@@ -506,9 +543,75 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
   <div class="section" id="sec-high">
     <div class="section-head">
       <h2>🟡 High Priority</h2>
-      <span class="section-badge warn">18</span>
+      <span class="section-badge warn">21</span>
     </div>
     <div class="card-grid">
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">LinkedIn (US Remote)</span>
+      </div>
+      <div class="deadline-banner ok">✓ Posted ~2 weeks ago (this month) — Active</div>
+      <div class="card-body">
+        <div class="card-company">Zillow</div>
+        <div class="card-role">Machine Learning Engineer, Agentic AI</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — US</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $150K–$220K USD (est.)</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Build & ship agentic AI systems in production</li><li>LLM orchestration / tool-use</li><li>Python + ML pipelines</li><li>Collaborate with product on AI features</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>Lead with the 23K-line production AI agent system (80% auto-reply, 24/7). You've shipped agentic automation end-to-end, not just prototyped it.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Production AI agent system (Kun-Jia)</span><span class="chip strength">Claude API / LLM integration</span><span class="chip strength">Python + ML (XGBoost/SHAP)</span><span class="chip weakness">US timezone bias — clarify remote-APAC eligibility</span><span class="chip weakness">'ML Engineer' bar may expect formal ML depth</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Frame Kun-Jia as agentic orchestration + tool-use</li><li>Have a metrics story: uptime, auto-reply %, cost saved</li><li>Ask early about APAC-remote acceptance</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.linkedin.com/jobs/view/machine-learning-engineer-agentic-ai-at-zillow-4385528913" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">LinkedIn (US Remote)</span>
+      </div>
+      <div class="deadline-banner fire">🔥 Posted ~6 days ago (this month) — Active</div>
+      <div class="card-body">
+        <div class="card-company">Recurring Decimal</div>
+        <div class="card-role">Sales AI Agent Builder</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote — US</span>
+          <span class="meta-chip">⏱ Full-time / Contract</span>
+          <span class="meta-chip">💰 $100K–$160K USD (est.)</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Design & build AI agents for sales workflows</li><li>Integrate LLMs with CRM / sales tooling</li><li>Ship & iterate agent behavior</li><li>Client / stakeholder facing</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You are a productized 'AI Agent Builder': built a full production agent system + delivered AI-augmented consulting ($560K savings). Marketing MBA = you understand the sales domain they're automating.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Shipped production AI agent</span><span class="chip strength">AI-augmented consulting (Anatek)</span><span class="chip strength">Marketing/sales domain (MBA + PPC 400+ leads/mo)</span><span class="chip strength">Python + TypeScript</span><span class="chip weakness">May want US sales-stack familiarity (Salesforce/HubSpot)</span><span class="chip weakness">Startup pace — show speed of shipping</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Map Kun-Jia auto-reply to a 'sales agent' framing</li><li>Name the sales tools you can integrate (HubSpot/CRM)</li><li>Bring a 2-min build demo or repo</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.linkedin.com/jobs/view/sales-ai-agent-builder-at-recurring-decimal-4437625008" target="_blank" class="btn btn-primary danger">Apply / View →</a></div>
+    </div>
+    <div class="opp-card high" data-category="ai_automation">
+      <div class="card-top">
+        <span class="priority-pill high">high</span>
+        <span class="platform-pill">Working Nomads (Remote)</span>
+      </div>
+      <div class="deadline-banner ok">✓ Posted ~3 days ago (this month) — Active</div>
+      <div class="card-body">
+        <div class="card-company">Ollion</div>
+        <div class="card-role">Lead — AI/ML Engineer (Generative AI Agent Systems)</div>
+        <div class="card-meta">
+          <span class="meta-chip">📍 100% Remote</span>
+          <span class="meta-chip">⏱ Full-time</span>
+          <span class="meta-chip">💰 $120K–$180K USD (est.)</span>
+        </div>
+        <div class="tag-row"><span class="cat-tag ai_automation">ai_automation</span></div>
+        <div class="info-row"><strong>What They Expect</strong><ul style="padding-left:16px;font-size:13px;color:#475467;"><li>Architect generative AI agent systems</li><li>Lead technical direction on agent platforms</li><li>LLM + RAG + orchestration</li><li>Cross-functional delivery</li></ul></div>
+        <div class="sell-box"><div class="label">How to Sell Yourself</div><p>You architected a 23K-line AI ops system solo — that's lead-level ownership. Pair it with the semiconductor consulting win to show you lead both build and business outcome.</p></div>
+        <div><strong style="font-size:11px;color:#98a2b3;text-transform:uppercase;letter-spacing:.5px;">Strengths & Risks</strong><div class="chips-row" style="margin-top:4px;"><span class="chip strength">Architected full AI agent system solo</span><span class="chip strength">LLM integration + RAG</span><span class="chip strength">Consulting/stakeholder leadership</span><span class="chip strength">Docker / CI-CD deploy</span><span class="chip weakness">'Lead' may want direct-report management history</span><span class="chip weakness">May expect larger-scale distributed systems</span></div></div>
+        <div class="info-row"><strong>Prep Tips</strong><ol class="prep-list"><li>Frame Kun-Jia architecture decisions as lead-level</li><li>Prepare a systems-design walk-through</li><li>Address team-scaling: how you'd grow an agent team</li></ol></div>
+      </div>
+      <div class="card-actions"><a href="https://www.workingnomads.com/jobs/lead-aiml-engineer-generative-ai-agent-systems-ollion" target="_blank" class="btn btn-primary">Apply / View →</a></div>
+    </div>
     <div class="opp-card high" data-category="ai_automation">
       <div class="card-top">
         <span class="priority-pill high">high</span>
@@ -998,6 +1101,273 @@ button { font-family: var(--font); cursor: pointer; border: none; background: no
       <span class="section-badge neutral">0</span>
     </div>
     <div class="card-grid"><div class="empty">No government positions in current scan</div></div>
+  </div>
+
+  <!-- COMPANY CAREER PAGES -->
+  
+  <div class="section" id="sec-careers">
+    <div class="section-head">
+      <h2>🏢 Remote-First Company Career Pages</h2>
+      <span class="section-badge neutral">57</span>
+    </div>
+    <p class="career-tip">💡 On each careers page, search 'AI agent', 'agentic', 'LLM', or 'automation'. Companies marked 🔥 are the strongest fit for Jerry's AI-agent profile.</p>
+    
+    <div class="career-group">
+      <div class="career-group-head">AI-native <span class="career-count">7</span></div>
+      <div class="career-chip-grid">
+      <a href="https://www.anthropic.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="AI safety & foundation models (Claude). Jerry ships on Claude API daily.">
+        <span class="cc-name">🔥 Anthropic</span>
+        <span class="cc-note">AI safety & foundation models (Claude). Jerry ships on Claude API daily.</span>
+      </a>
+      <a href="https://openai.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="AI research & deployment. Forward-deployed / applied AI agent roles.">
+        <span class="cc-name">🔥 OpenAI</span>
+        <span class="cc-note">AI research & deployment. Forward-deployed / applied AI agent roles.</span>
+      </a>
+      <a href="https://www.perplexity.ai/careers" target="_blank" rel="noopener" class="career-chip hot" title="AI answer engine. Agentic search & tool-use roles.">
+        <span class="cc-name">🔥 Perplexity</span>
+        <span class="cc-note">AI answer engine. Agentic search & tool-use roles.</span>
+      </a>
+      <a href="https://elevenlabs.io/careers" target="_blank" rel="noopener" class="career-chip hot" title="AI voice. Conversational-AI / agent integration.">
+        <span class="cc-name">🔥 ElevenLabs</span>
+        <span class="cc-note">AI voice. Conversational-AI / agent integration.</span>
+      </a>
+      <a href="https://huggingface.co/jobs" target="_blank" rel="noopener" class="career-chip hot" title="Open-source AI, fully distributed. ML/agent tooling.">
+        <span class="cc-name">🔥 Hugging Face</span>
+        <span class="cc-note">Open-source AI, fully distributed. ML/agent tooling.</span>
+      </a>
+      <a href="https://www.grammarly.com/jobs" target="_blank" rel="noopener" class="career-chip hot" title="AI writing assistant. Applied NLP / agent roles.">
+        <span class="cc-name">🔥 Grammarly</span>
+        <span class="cc-note">AI writing assistant. Applied NLP / agent roles.</span>
+      </a>
+      <a href="https://www.nvidia.com/en-us/about-nvidia/careers" target="_blank" rel="noopener" class="career-chip" title="AI compute & GPU. Hybrid; some remote AI SW roles.">
+        <span class="cc-name">NVIDIA</span>
+        <span class="cc-note">AI compute & GPU. Hybrid; some remote AI SW roles.</span>
+      </a></div>
+    </div>
+    <div class="career-group">
+      <div class="career-group-head">Automation & Productivity <span class="career-count">9</span></div>
+      <div class="career-chip-grid">
+      <a href="https://zapier.com/jobs" target="_blank" rel="noopener" class="career-chip hot" title="Fully remote workflow automation — core AI-agent adjacency.">
+        <span class="cc-name">🔥 Zapier</span>
+        <span class="cc-note">Fully remote workflow automation — core AI-agent adjacency.</span>
+      </a>
+      <a href="https://www.notion.so/careers" target="_blank" rel="noopener" class="career-chip hot" title="Productivity + Notion AI. Agent/LLM feature teams.">
+        <span class="cc-name">🔥 Notion</span>
+        <span class="cc-note">Productivity + Notion AI. Agent/LLM feature teams.</span>
+      </a>
+      <a href="https://automattic.com/work-with-us" target="_blank" rel="noopener" class="career-chip" title="WordPress/WooCommerce. Fully distributed, famously remote.">
+        <span class="cc-name">Automattic</span>
+        <span class="cc-note">WordPress/WooCommerce. Fully distributed, famously remote.</span>
+      </a>
+      <a href="https://buffer.com/journey" target="_blank" rel="noopener" class="career-chip" title="Fully distributed social tooling. Small team, high trust.">
+        <span class="cc-name">Buffer</span>
+        <span class="cc-note">Fully distributed social tooling. Small team, high trust.</span>
+      </a>
+      <a href="https://asana.com/jobs" target="_blank" rel="noopener" class="career-chip" title="Work management + Asana AI. Hybrid flexibility.">
+        <span class="cc-name">Asana</span>
+        <span class="cc-note">Work management + Asana AI. Hybrid flexibility.</span>
+      </a>
+      <a href="https://clickup.com/careers" target="_blank" rel="noopener" class="career-chip" title="Productivity platform, distributed teams.">
+        <span class="cc-name">ClickUp</span>
+        <span class="cc-note">Productivity platform, distributed teams.</span>
+      </a>
+      <a href="https://miro.com/careers" target="_blank" rel="noopener" class="career-chip" title="Collaborative whiteboard; AI features.">
+        <span class="cc-name">Miro</span>
+        <span class="cc-note">Collaborative whiteboard; AI features.</span>
+      </a>
+      <a href="https://webflow.com/careers" target="_blank" rel="noopener" class="career-chip" title="Website platform; remote-friendly.">
+        <span class="cc-name">Webflow</span>
+        <span class="cc-note">Website platform; remote-friendly.</span>
+      </a>
+      <a href="https://linear.app/careers" target="_blank" rel="noopener" class="career-chip" title="Modern PM tool; small, remote, high bar.">
+        <span class="cc-name">Linear</span>
+        <span class="cc-note">Modern PM tool; small, remote, high bar.</span>
+      </a></div>
+    </div>
+    <div class="career-group">
+      <div class="career-group-head">Dev Tools & Infra <span class="career-count">11</span></div>
+      <div class="career-chip-grid">
+      <a href="https://about.gitlab.com/jobs" target="_blank" rel="noopener" class="career-chip hot" title="Fully remote, no HQ. GitLab Duo AI agent work.">
+        <span class="cc-name">🔥 GitLab</span>
+        <span class="cc-note">Fully remote, no HQ. GitLab Duo AI agent work.</span>
+      </a>
+      <a href="https://vercel.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="Frontend cloud + AI SDK. TS/React heavy — Jerry's stack.">
+        <span class="cc-name">🔥 Vercel</span>
+        <span class="cc-note">Frontend cloud + AI SDK. TS/React heavy — Jerry's stack.</span>
+      </a>
+      <a href="https://github.careers" target="_blank" rel="noopener" class="career-chip hot" title="Copilot / agent tooling. Remote-first (Microsoft).">
+        <span class="cc-name">🔥 GitHub</span>
+        <span class="cc-note">Copilot / agent tooling. Remote-first (Microsoft).</span>
+      </a>
+      <a href="https://www.cloudflare.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="Workers AI + agents platform. Strong AI-agent push.">
+        <span class="cc-name">🔥 Cloudflare</span>
+        <span class="cc-note">Workers AI + agents platform. Strong AI-agent push.</span>
+      </a>
+      <a href="https://www.docker.com/careers" target="_blank" rel="noopener" class="career-chip" title="Containers; Jerry uses Docker in prod.">
+        <span class="cc-name">Docker</span>
+        <span class="cc-note">Containers; Jerry uses Docker in prod.</span>
+      </a>
+      <a href="https://www.hashicorp.com/careers" target="_blank" rel="noopener" class="career-chip" title="Infra automation; remote-friendly.">
+        <span class="cc-name">HashiCorp</span>
+        <span class="cc-note">Infra automation; remote-friendly.</span>
+      </a>
+      <a href="https://grafana.com/about/careers" target="_blank" rel="noopener" class="career-chip" title="Open-source observability; distributed.">
+        <span class="cc-name">Grafana Labs</span>
+        <span class="cc-note">Open-source observability; distributed.</span>
+      </a>
+      <a href="https://www.elastic.co/careers" target="_blank" rel="noopener" class="career-chip" title="Search/observability; distributed teams.">
+        <span class="cc-name">Elastic</span>
+        <span class="cc-note">Search/observability; distributed teams.</span>
+      </a>
+      <a href="https://www.mongodb.com/careers" target="_blank" rel="noopener" class="career-chip" title="Database platform; vector search / AI.">
+        <span class="cc-name">MongoDB</span>
+        <span class="cc-note">Database platform; vector search / AI.</span>
+      </a>
+      <a href="https://careers.snowflake.com" target="_blank" rel="noopener" class="career-chip" title="Cloud data + Cortex AI agents.">
+        <span class="cc-name">Snowflake</span>
+        <span class="cc-note">Cloud data + Cortex AI agents.</span>
+      </a>
+      <a href="https://careers.datadoghq.com" target="_blank" rel="noopener" class="career-chip" title="Monitoring; some remote AI/data roles.">
+        <span class="cc-name">Datadog</span>
+        <span class="cc-note">Monitoring; some remote AI/data roles.</span>
+      </a></div>
+    </div>
+    <div class="career-group">
+      <div class="career-group-head">Security <span class="career-count">4</span></div>
+      <div class="career-chip-grid">
+      <a href="https://snyk.io/careers" target="_blank" rel="noopener" class="career-chip" title="Developer security platform.">
+        <span class="cc-name">Snyk</span>
+        <span class="cc-note">Developer security platform.</span>
+      </a>
+      <a href="https://www.crowdstrike.com/careers" target="_blank" rel="noopener" class="career-chip" title="Cybersecurity; many remote roles.">
+        <span class="cc-name">CrowdStrike</span>
+        <span class="cc-note">Cybersecurity; many remote roles.</span>
+      </a>
+      <a href="https://www.okta.com/company/careers" target="_blank" rel="noopener" class="career-chip" title="Identity & access management.">
+        <span class="cc-name">Okta</span>
+        <span class="cc-note">Identity & access management.</span>
+      </a>
+      <a href="https://jobs.paloaltonetworks.com" target="_blank" rel="noopener" class="career-chip" title="Security platform; AI-driven detection.">
+        <span class="cc-name">Palo Alto Networks</span>
+        <span class="cc-note">Security platform; AI-driven detection.</span>
+      </a></div>
+    </div>
+    <div class="career-group">
+      <div class="career-group-head">Fintech / HR / Payments <span class="career-count">13</span></div>
+      <div class="career-chip-grid">
+      <a href="https://stripe.com/jobs" target="_blank" rel="noopener" class="career-chip hot" title="Payments infra + applied AI. Remote hubs incl. APAC.">
+        <span class="cc-name">🔥 Stripe</span>
+        <span class="cc-note">Payments infra + applied AI. Remote hubs incl. APAC.</span>
+      </a>
+      <a href="https://www.deel.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="Remote-first global payroll — Jerry can contract via Deel.">
+        <span class="cc-name">🔥 Deel</span>
+        <span class="cc-note">Remote-first global payroll — Jerry can contract via Deel.</span>
+      </a>
+      <a href="https://remote.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="Global employment platform; fully remote by design.">
+        <span class="cc-name">🔥 Remote</span>
+        <span class="cc-note">Global employment platform; fully remote by design.</span>
+      </a>
+      <a href="https://ramp.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="Finance automation + AI agents for spend.">
+        <span class="cc-name">🔥 Ramp</span>
+        <span class="cc-note">Finance automation + AI agents for spend.</span>
+      </a>
+      <a href="https://jobs.twilio.com" target="_blank" rel="noopener" class="career-chip hot" title="Comms APIs + conversational AI agents. Open Work remote.">
+        <span class="cc-name">🔥 Twilio</span>
+        <span class="cc-note">Comms APIs + conversational AI agents. Open Work remote.</span>
+      </a>
+      <a href="https://www.shopify.com/careers" target="_blank" rel="noopener" class="career-chip hot" title="Digital-by-default; Shopify Magic / Sidekick AI.">
+        <span class="cc-name">🔥 Shopify</span>
+        <span class="cc-note">Digital-by-default; Shopify Magic / Sidekick AI.</span>
+      </a>
+      <a href="https://careers.servicenow.com" target="_blank" rel="noopener" class="career-chip hot" title="Enterprise workflow + agentic AI (Now Assist).">
+        <span class="cc-name">🔥 ServiceNow</span>
+        <span class="cc-note">Enterprise workflow + agentic AI (Now Assist).</span>
+      </a>
+      <a href="https://www.oysterhr.com/careers" target="_blank" rel="noopener" class="career-chip" title="Global hiring/HR; distributed.">
+        <span class="cc-name">Oyster</span>
+        <span class="cc-note">Global hiring/HR; distributed.</span>
+      </a>
+      <a href="https://gusto.com/about/careers" target="_blank" rel="noopener" class="career-chip" title="Payroll/HR for SMBs.">
+        <span class="cc-name">Gusto</span>
+        <span class="cc-note">Payroll/HR for SMBs.</span>
+      </a>
+      <a href="https://www.brex.com/careers" target="_blank" rel="noopener" class="career-chip" title="Startup finance platform.">
+        <span class="cc-name">Brex</span>
+        <span class="cc-note">Startup finance platform.</span>
+      </a>
+      <a href="https://mercury.com/jobs" target="_blank" rel="noopener" class="career-chip" title="Banking for startups.">
+        <span class="cc-name">Mercury</span>
+        <span class="cc-note">Banking for startups.</span>
+      </a>
+      <a href="https://www.coinbase.com/careers" target="_blank" rel="noopener" class="career-chip" title="Crypto exchange; remote-first.">
+        <span class="cc-name">Coinbase</span>
+        <span class="cc-note">Crypto exchange; remote-first.</span>
+      </a>
+      <a href="https://www.hubspot.com/careers" target="_blank" rel="noopener" class="career-chip" title="CRM + Breeze AI agents. Flexible work.">
+        <span class="cc-name">HubSpot</span>
+        <span class="cc-note">CRM + Breeze AI agents. Flexible work.</span>
+      </a></div>
+    </div>
+    <div class="career-group">
+      <div class="career-group-head">Social & Comms <span class="career-count">8</span></div>
+      <div class="career-chip-grid">
+      <a href="https://www.atlassian.com/company/careers" target="_blank" rel="noopener" class="career-chip hot" title="Team Anywhere + Rovo AI agents. APAC-friendly.">
+        <span class="cc-name">🔥 Atlassian</span>
+        <span class="cc-note">Team Anywhere + Rovo AI agents. APAC-friendly.</span>
+      </a>
+      <a href="https://careers.zoom.us" target="_blank" rel="noopener" class="career-chip hot" title="Video + AI Companion agents. Remote roles.">
+        <span class="cc-name">🔥 Zoom</span>
+        <span class="cc-note">Video + AI Companion agents. Remote roles.</span>
+      </a>
+      <a href="https://careers.airbnb.com" target="_blank" rel="noopener" class="career-chip" title="Live & Work Anywhere policy.">
+        <span class="cc-name">Airbnb</span>
+        <span class="cc-note">Live & Work Anywhere policy.</span>
+      </a>
+      <a href="https://jobs.dropbox.com" target="_blank" rel="noopener" class="career-chip" title="Virtual First work model; Dash AI.">
+        <span class="cc-name">Dropbox</span>
+        <span class="cc-note">Virtual First work model; Dash AI.</span>
+      </a>
+      <a href="https://www.redditinc.com/careers" target="_blank" rel="noopener" class="career-chip" title="Many remote/hybrid roles; Reddit Answers AI.">
+        <span class="cc-name">Reddit</span>
+        <span class="cc-note">Many remote/hybrid roles; Reddit Answers AI.</span>
+      </a>
+      <a href="https://discord.com/jobs" target="_blank" rel="noopener" class="career-chip" title="Voice/chat platform; remote roles.">
+        <span class="cc-name">Discord</span>
+        <span class="cc-note">Voice/chat platform; remote roles.</span>
+      </a>
+      <a href="https://www.canva.com/careers" target="_blank" rel="noopener" class="career-chip" title="Design platform + Magic Studio AI. Hybrid/remote.">
+        <span class="cc-name">Canva</span>
+        <span class="cc-note">Design platform + Magic Studio AI. Hybrid/remote.</span>
+      </a>
+      <a href="https://www.figma.com/careers" target="_blank" rel="noopener" class="career-chip" title="Collaborative design; AI features.">
+        <span class="cc-name">Figma</span>
+        <span class="cc-note">Collaborative design; AI features.</span>
+      </a></div>
+    </div>
+    <div class="career-group">
+      <div class="career-group-head">Big Tech (hybrid) <span class="career-count">5</span></div>
+      <div class="career-chip-grid">
+      <a href="https://careers.microsoft.com" target="_blank" rel="noopener" class="career-chip hot" title="Copilot agents everywhere. Many hybrid roles.">
+        <span class="cc-name">🔥 Microsoft</span>
+        <span class="cc-note">Copilot agents everywhere. Many hybrid roles.</span>
+      </a>
+      <a href="https://careers.google.com" target="_blank" rel="noopener" class="career-chip hot" title="Gemini agents. Hybrid + some remote.">
+        <span class="cc-name">🔥 Google</span>
+        <span class="cc-note">Gemini agents. Hybrid + some remote.</span>
+      </a>
+      <a href="https://careers.adobe.com" target="_blank" rel="noopener" class="career-chip" title="Creative software + Firefly AI. Flexible/hybrid.">
+        <span class="cc-name">Adobe</span>
+        <span class="cc-note">Creative software + Firefly AI. Flexible/hybrid.</span>
+      </a>
+      <a href="https://www.amazon.jobs" target="_blank" rel="noopener" class="career-chip" title="AWS Bedrock agents; select remote roles.">
+        <span class="cc-name">Amazon</span>
+        <span class="cc-note">AWS Bedrock agents; select remote roles.</span>
+      </a>
+      <a href="https://jobs.cisco.com" target="_blank" rel="noopener" class="career-chip" title="Networking/collab; AI-assistant work.">
+        <span class="cc-name">Cisco</span>
+        <span class="cc-note">Networking/collab; AI-assistant work.</span>
+      </a></div>
+    </div>
   </div>
 
 </div>
